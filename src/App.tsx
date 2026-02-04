@@ -4,6 +4,7 @@ import { Store } from "./pages/Store";
 import { About } from "./pages/About";
 import { Navbar } from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import BuggyComponent from "./components/BuggyComponent";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Footer } from "./components/Footer";
 
@@ -18,6 +19,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/store" element={<Store />} />
               <Route path="/about" element={<About />} />
+              <Route path="/bug" element={<BuggyComponent />} />
             </Routes>
             <Footer />
           </main>

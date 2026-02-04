@@ -3,7 +3,7 @@
 ![Tailwind CSS](https://readmebadge.vercel.app/badges/tailwind.svg) ![React](https://readmebadge.vercel.app/badges/react.svg)
 ![Typescript](https://readmebadge.vercel.app/badges/typescript.svg)
 
-## Sandbox project to implement Tailwind CSS and apply the DRY principle through Tailwind Variants
+Sandbox project to implement Tailwind CSS the apply DRY principle through Tailwind Variants
 
 ## Tech Stack
 
@@ -11,23 +11,6 @@
 - TypeScript
 - Tailwind CSS
 - Tailind Variants
-
----
-
-**Repeating long strings of utility class names in the JSX**
-
-Tailwind V4 documentation does provides strategies to handle repetition occurring:
-
-- Extracting components and/ or looping may reduce this
-- These strategies were not entirely eliminating the problem, depending on the structure of the components
-- The resulting code was sometimes peppered with long, duplicate inline strings of utility class names
-- Also considered the time implications of relying on such strategies if introducing Tailwind CSS into an existing project, with or without blending it with vanilla CSS
-
-**Tailwind Variants:**
-
-- React templating components are reusable
-- A variant can declare a set of style rules which can then be referred to anywhere the variant is applied
-- Prevent the long duplicate strings of utility class names created in instances where neither looping nor extracting to a single reusable component solved the problem
 
 ---
 

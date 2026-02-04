@@ -1,6 +1,7 @@
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import storeItems from "../data/items.json";
 import { formatCurrency } from "../utilities/formatCurrency";
+import Button from "./Button";
 
 type CartItemProps = {
   id: number;
@@ -39,12 +40,11 @@ export const CartItem = ({ id, quantity }: CartItemProps) => {
             {formatCurrency(item.price * quantity)}
           </p>
         </div>
-        <button
+        <Button
+          variant="removeFromOpenedCart"
+          dataKey="removeFromOpenedCart"
           onClick={() => removeFromCart(item.id)}
-          className="w-8 h-8 flex justify-center items-center border border-red-600 rounded-sm text-red-600 transition-colors hover:text-white hover:bg-red-600 active:bg-red-900 active:text-white"
-        >
-          &times;
-        </button>
+        />
       </div>
     </div>
   );

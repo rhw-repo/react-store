@@ -3,6 +3,7 @@ import { useShoppingCart } from "../context/ShoppingCartContext";
 import { CartItem } from "./CartItem";
 import { formatCurrency } from "../utilities/formatCurrency";
 import storeItems from "../data/items.json";
+import Button from "./Button";
 
 export const ShoppingCart = () => {
   const { isOpen, closeCart, cartItems } = useShoppingCart();
@@ -45,13 +46,12 @@ export const ShoppingCart = () => {
         >
           <header className="flex items-center justify-between px-6 py-4 border-b">
             <h2 className="text-xl font-semibold">Cart</h2>
-            <button
+            <Button
+              variant="closeCart"
+              dataKey="closeCart"
               onClick={closeCart}
               aria-label="Close cart"
-              className="p-2 text-gray-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-blue-600 rounded"
-            >
-              &times;
-            </button>
+            />
           </header>
 
           <div className="p-6 overflow-y-auto">
@@ -66,14 +66,12 @@ export const ShoppingCart = () => {
                 cartItems.reduce((total, cartItem) => {
                   const item = storeItems.find((i) => i.id === cartItem.id);
                   return total + (item?.price || 0) * cartItem.quantity;
-                }, 0)
+                }, 0),
               )}
             </p>
           </div>
           <footer className="px-6 py-4 border-t">
-            <button className="w-full py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700">
-              Checkout
-            </button>
+            <Button variant="default" dataKey="checkout" />
           </footer>
         </aside>
       </div>
