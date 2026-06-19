@@ -21,7 +21,7 @@ Sandbox project to implement Tailwind CSS the apply DRY principle through Tailwi
 2. Clone your fork:
 
 ```
-git clone https://github.com/rhw-repo/tailwind_project.git
+git clone https://github.com/rhw-repo/store.git
 
 ```
 
