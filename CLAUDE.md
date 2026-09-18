@@ -4,14 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
+This project uses **pnpm** (pinned via `packageManager` in package.json). Don't run `npm install` — it would regenerate an npm lockfile alongside `pnpm-lock.yaml`.
+
 ```bash
-npm run dev       # Vite dev server
-npm run build     # tsc -b (project references) then vite build
-npm run lint      # eslint over the repo
-npm run preview   # serve the production build
+pnpm install
+pnpm dev       # Vite dev server
+pnpm build     # tsc -b (project references) then vite build
+pnpm lint      # eslint over the repo
+pnpm preview   # serve the production build
 ```
 
-There is no test framework in this project — no test runner, config, or test files. `npm run build` is the type check (`tsc -b` runs before the bundle), so run it after non-trivial type changes.
+There is no test framework in this project — no test runner, config, or test files. `pnpm build` is the type check (`tsc -b` runs before the bundle), so run it after non-trivial type changes.
+
+Note that `pnpm build` passes trailing arguments through to the script, so run it bare — `pnpm build` with anything appended ends up as arguments to `vite build` and fails on unknown options.
 
 Deployed to Railway: https://tailwindproject-staging.up.railway.app/store
 
@@ -21,7 +26,9 @@ Per the README, this is a sandbox for practising Tailwind CSS with DRY styling t
 
 ## Architecture
 
-**Tailwind v4, no theme layer.** Tailwind comes in through the `@tailwindcss/vite` plugin in [vite.config.ts](vite.config.ts), and [src/index.css](src/index.css) is a bare `@import "tailwindcss"` with nothing after it — no `@theme` block, so the project defines no design tokens of its own. Every customisation is an inline arbitrary value (`bg-[url('...')]`, `w-[clamp(2.5rem,6vw,3.5rem)]`, `[@media_(min-width:768px)_and_(orientation:portrait)]:...`). Introducing a brand colour, spacing scale, or custom breakpoint means adding that `@theme` layer for the first time. `tailwind-merge` is a dependency but is not currently imported anywhere.
+**Tailwind v4, no theme layer.** Tailwind comes in through the `@tailwindcss/vite` plugin in [vite.config.ts](vite.config.ts), and [src/index.css](src/index.css) is a bare `@import "tailwindcss"` with nothing after it — no `@theme` block, so the project defines no design tokens of its own. Every customisation is an inline arbitrary value (`bg-[url('...')]`, `w-[clamp(2.5rem,6vw,3.5rem)]`, `[@media_(min-width:768px)_and_(orientation:portrait)]:...`). Introducing a brand colour, spacing scale, or custom breakpoint means adding that `@theme` layer for the first time.
+
+**Class conflicts are resolved by `tailwind-variants` itself.** `tv()` merges conflicting Tailwind classes internally as of tailwind-variants 3.3, so `tailwind-merge` is deliberately *not* a dependency here — it was removed once the lockfile moved to tv 3.3.1. This is load-bearing: `Button`'s `base` sets `rounded-sm` while the `blankPages` variant sets `rounded`, and the variant wins because of that internal merge. Don't reinstall `tailwind-merge` to "fix" such a conflict, and only add it back if something imports `twMerge`/`extendTailwindMerge` directly.
 
 **Provider tree** ([src/App.tsx](src/App.tsx)): `ErrorBoundary` (class component, resets on `resetKey={location.pathname}`) wraps `ShoppingCartProvider`, which renders `Navbar`, the routed `main`, and `Footer`. `BrowserRouter` lives in [src/main.tsx](src/main.tsx).
 

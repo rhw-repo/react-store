@@ -36,25 +36,13 @@ cd tailwind_project
 4. Install dependencies:
 
 ```
-npm install
-```
-
-or
-
-```
-yarn install
+pnpm install
 ```
 
 5. Start the dev server
 
 ```
-npm run dev
-```
-
-or
-
-```
-yarn dev
+pnpm run dev
 ```
 
 ---
