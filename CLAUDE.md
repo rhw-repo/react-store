@@ -1,0 +1,44 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Commands
+
+```bash
+npm run dev       # Vite dev server
+npm run build     # tsc -b (project references) then vite build
+npm run lint      # eslint over the repo
+npm run preview   # serve the production build
+```
+
+There is no test framework in this project — no test runner, config, or test files. `npm run build` is the type check (`tsc -b` runs before the bundle), so run it after non-trivial type changes.
+
+Deployed to Railway: https://tailwindproject-staging.up.railway.app/store
+
+## Purpose
+
+Per the README, this is a sandbox for practising Tailwind CSS with DRY styling through Tailwind Variants. Styling decisions (centralising variants rather than repeating class strings) are the point of the project, not incidental.
+
+## Architecture
+
+**Tailwind v4, no theme layer.** Tailwind comes in through the `@tailwindcss/vite` plugin in [vite.config.ts](vite.config.ts), and [src/index.css](src/index.css) is a bare `@import "tailwindcss"` with nothing after it — no `@theme` block, so the project defines no design tokens of its own. Every customisation is an inline arbitrary value (`bg-[url('...')]`, `w-[clamp(2.5rem,6vw,3.5rem)]`, `[@media_(min-width:768px)_and_(orientation:portrait)]:...`). Introducing a brand colour, spacing scale, or custom breakpoint means adding that `@theme` layer for the first time. `tailwind-merge` is a dependency but is not currently imported anywhere.
+
+**Provider tree** ([src/App.tsx](src/App.tsx)): `ErrorBoundary` (class component, resets on `resetKey={location.pathname}`) wraps `ShoppingCartProvider`, which renders `Navbar`, the routed `main`, and `Footer`. `BrowserRouter` lives in [src/main.tsx](src/main.tsx).
+
+**Routes**: `/`, `/store`, `/about`. Only [Store](src/pages/Store.tsx) has real content; [Home](src/pages/Home.tsx) and [About](src/pages/About.tsx) both just render [BlankPagesTemplate](src/components/BlankPagesTemplate.tsx), the shared "Coming Soon" placeholder.
+
+**Cart state** ([src/context/ShoppingCartContext.tsx](src/context/ShoppingCartContext.tsx)): a context consumed via the `useShoppingCart()` hook. The provider also renders the `ShoppingCart` drawer itself, after `{children}` — the drawer is always mounted and slides in/out on `isOpen`, so it does not appear in any page's JSX. Cart state persists through [useLocalStorage](src/hooks/useLocalStorage.ts) under the key `shopping-cart`. All updates use functional `setCartItems` and build new arrays rather than mutating.
+
+**Product data is joined by id, not stored in the cart.** `cartItems` holds only `{ id, quantity }`. [StoreItemCard](src/components/StoreItemCard.tsx), [CartItem](src/components/CartItem.tsx), and [ShoppingCart](src/components/ShoppingCart.tsx) each import [src/data/items.json](src/data/items.json) directly and look the item up by id for name, price, and image. Cart totals are computed in the same way at render time.
+
+## Conventions
+
+**Buttons go through [src/components/Button.tsx](src/components/Button.tsx).** It is the DRY pattern the project exists to demonstrate: styles come from a `tv()` variant map, and the *label* comes from `getButtonText(dataKey)` in [src/utilities/getButtonText.ts](src/utilities/getButtonText.ts) — `Button` takes no children. Adding a button means adding a `variant` entry in `Button.tsx` and, if the text is new, a member of the `DataKey` union plus a `switch` case. `dataKey` is also emitted as a `data-key` attribute. The cart icon in [Navbar](src/components/Navbar.tsx) is a deliberate exception: `Button` renders a string label and takes no children, so it cannot hold an SVG plus the quantity badge. The "Go to Store" button in [ErrorBoundary](src/components/ErrorBoundary.tsx), by contrast, is not an exception — it predates `Button` and was never migrated. Its inline classes duplicate the `blankPages` variant that [BlankPagesTemplate](src/components/BlankPagesTemplate.tsx) already uses for the same button, give or take `w-full`, the hover state, and `text-neutral-50` vs `text-neutral-100`.
+
+**Prices** always render through [formatCurrency](src/utilities/formatCurrency.ts) (EUR, locale-default formatting).
+
+**Images** live in `public/imgs/` and are referenced by absolute path (`/imgs/name.webp`) from `items.json` or imported as `"/imgs/..."`. The README carries per-image photographer credits; adding an image means adding its credit there.
+
+**TypeScript** is strict with `noUnusedLocals`, `noUnusedParameters`, `erasableSyntaxOnly`, and `verbatimModuleSyntax` — type-only imports must be written `import type { ... }` or `import { type Foo }`, as the existing files do.
+
+**Responsive styling** leans heavily on `portrait:` / `landscape:` orientation variants alongside breakpoints; the placeholder and error pages are the main examples.
