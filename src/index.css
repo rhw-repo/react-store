@@ -10,11 +10,10 @@
   font-display: swap;
 }
 
-/* Variable font. Axes: opsz 9-144, wght 100-900, SOFT 0-100, WONK 0-1.
-   opsz tracks font-size automatically (font-optical-sizing defaults to auto). */
+/* Variable font. Axis: wght 100-900. */
 @font-face {
-  font-family: "Fraunces";
-  src: url("/Fraunces-Variable.woff2") format("woff2");
+  font-family: "Geist";
+  src: url("/Geist-Variable.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -22,17 +21,18 @@
 
 /* Named tokens; these generate the font-body and font-ui utilities */
 @theme {
-  --font-body: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-ui: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-shell: #faf8f5;
+  --color-ink: #1c1c1c;
+  --color-stone: #f4f8f6;
 }
 
 @layer base {
   /* Primary: paragraph and body copy */
   body {
     font-family: var(--font-body);
-    /* Fraunces ships with WONK on by default; turn the quirky alternates off.
-       Only this axis is pinned, so font-weight still drives wght. */
-    font-variation-settings: "WONK" 0;
+    background-color: var(--color-shell);
   }
 
   /* Secondary: headings and links. Buttons get font-ui from Button's tv() base. */
@@ -44,5 +44,6 @@
   h6,
   a {
     font-family: var(--font-ui);
+    color: var(--color-ink);
   }
 }
