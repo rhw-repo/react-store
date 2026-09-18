@@ -10,19 +10,19 @@ export const Navbar = () => {
         <div className="flex justify-start">
           <NavLink
             to="/"
-            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-gray-600 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950"
+            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-ink hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950"
           >
             Home
           </NavLink>
           <NavLink
             to="/store"
-            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-gray-600 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950"
+            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-ink hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950"
           >
             Store
           </NavLink>
           <NavLink
             to="/about"
-            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-gray-600 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950"
+            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-ink hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950"
           >
             About
           </NavLink>
