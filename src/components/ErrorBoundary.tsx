@@ -1,6 +1,6 @@
 // 'Component' must be imported to write any class component
 import React, { Component, type ReactNode } from "react";
-import errorBoundaryImg from "/imgs/error-boundary-image.webp";
+import Button from "./Button";
 
 interface Props {
   children: ReactNode;
@@ -54,7 +54,7 @@ class ErrorBoundary extends Component<Props, State> {
               </div>
               <div className="aspect-3/2 p-4 overflow-hidden mb-8 landscape:mb-0">
                 <img
-                  src={errorBoundaryImg}
+                  src="/imgs/error-boundary-image.webp"
                   alt="A retro style robot toy stares with a fixed expression."
                   className="object-cover"
                 />
@@ -64,12 +64,11 @@ class ErrorBoundary extends Component<Props, State> {
                   We apologize for the inconvenience. Please use the button
                   below to go back.
                 </p>
-                <button
-                  className="py-2 px-4 bg-blue-700 landscape:text-sm  text-neutral-50 border rounded cursor-pointer mb-4"
+                <Button
+                  variant="blankPages"
+                  dataKey="goToStore"
                   onClick={() => (window.location.href = "/store")}
-                >
-                  Go to Store
-                </button>
+                />
               </div>
             </div>
           </section>

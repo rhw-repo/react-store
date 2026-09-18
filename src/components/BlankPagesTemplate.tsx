@@ -1,8 +1,19 @@
 import type { FC } from "react";
-import errorBoundaryImg from "/imgs/error-boundary-image.webp";
 import Button from "./Button";
 
-const BlankPagesTemplate: FC = () => {
+type BlankPagesTemplateProps = {
+  heading?: string;
+  subheading?: string;
+  message?: string;
+};
+
+// Defaults describe a page that exists but has no content yet (Home, About).
+// Pass all three to reuse the same layout for a different case, e.g. the 404 route.
+const BlankPagesTemplate: FC<BlankPagesTemplateProps> = ({
+  heading = "Coming Soon",
+  subheading = "This page has no content at this time.",
+  message = "Please visit the Store page.",
+}) => {
   return (
     <>
       {/* Handles component display within page */}
@@ -12,17 +23,17 @@ const BlankPagesTemplate: FC = () => {
           {/* Column 1 in landscape */}
           <div className="flex-col landscape:flex-1 landscape:justify-center">
             <h1 className="text-5xl landscape:text-5xl md:text-9xl [@media_(min-width:768px)_and_(max-width:1024px)_and_(orientation:portrait)]:text-5xl text-gray-600 m-4">
-              Coming Soon
+              {heading}
             </h1>
             <h2 className="text-gray-500 text-base text-balance md:text-4xl landscape:text-xl landscape:flex-1">
-              This page has no content at this time.
+              {subheading}
             </h2>
           </div>
 
           {/* Column 2 in landscape */}
           <div className="aspect-3/2 p-4 overflow-hidden mb-8 landscape:m-0 flex-col landscape:flex-1">
             <img
-              src={errorBoundaryImg}
+              src="/imgs/error-boundary-image.webp"
               alt="A retro style robot toy stares with a fixed expression."
               className="object-cover"
             />
@@ -31,7 +42,7 @@ const BlankPagesTemplate: FC = () => {
           {/* Column 3 in landscape */}
           <div className="flex flex-col justify-center mt-4 gap-4 landscape:justify-center landscape:flex-1 landscape:h-full landscape:mt-0">
             <p className="text-base landscape:text-base font-medium text-gray-700 text-balance">
-              Please visit the Store page.
+              {message}
             </p>
             <Button
               variant="blankPages"
