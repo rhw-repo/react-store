@@ -7,8 +7,6 @@ type BlankPagesTemplateProps = {
   message?: string;
 };
 
-// Defaults describe a page that exists but has no content yet (Home, About).
-// Pass all three to reuse the same layout for a different case, e.g. the 404 route.
 const BlankPagesTemplate: FC<BlankPagesTemplateProps> = ({
   heading = "Coming Soon",
   subheading = "This page has no content at this time.",
