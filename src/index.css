@@ -1,21 +1,48 @@
 @import "tailwindcss";
 
+/* Variable font. Axes: wdth 75-100, wght 400-700. */
 @font-face {
   font-family: "Instrument Sans";
-  src:
-    url("InstrumentSans-Regular.woff2") format("woff2"),
-    url("InstrumentSans-Regular.woff") format("woff");
-  font-weight: normal;
+  src: url("/InstrumentSans-Variable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-stretch: 75% 100%;
   font-style: normal;
   font-display: swap;
 }
 
+/* Variable font. Axes: opsz 9-144, wght 100-900, SOFT 0-100, WONK 0-1.
+   opsz tracks font-size automatically (font-optical-sizing defaults to auto). */
 @font-face {
   font-family: "Fraunces";
-  src:
-    url("Fraunces-9ptBlack.woff2") format("woff2"),
-    url("Fraunces-9ptBlack.woff") format("woff");
-  font-weight: 900;
+  src: url("/Fraunces-Variable.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+}
+
+/* Named tokens; these generate the font-body and font-ui utilities */
+@theme {
+  --font-body: "Fraunces", ui-serif, Georgia, serif;
+  --font-ui: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  /* Primary: paragraph and body copy */
+  body {
+    font-family: var(--font-body);
+    /* Fraunces ships with WONK on by default; turn the quirky alternates off.
+       Only this axis is pinned, so font-weight still drives wght. */
+    font-variation-settings: "WONK" 0;
+  }
+
+  /* Secondary: headings and links. Buttons get font-ui from Button's tv() base. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a {
+    font-family: var(--font-ui);
+  }
 }
