@@ -19,6 +19,9 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
     useShoppingCart();
 
   const quantity = getItemQuantity(id);
+  // At 1, decrementing empties the item out of the cart, so the control swaps
+  // to a trash icon and a destructive hover to say so.
+  const isLastOne = quantity === 1;
 
   return (
     <div className="flex flex-col shadow-lg hover:shadow-xl transition-shadow p-4 rounded-sm h-full">
@@ -42,17 +45,20 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
             onClick={() => increaseCartQuantity(id)}
           />
         ) : (
-          <div className="flex flex-row justify-end items-center w-full gap-2">
+          // w-fit + ml-auto rather than w-full + justify-end: the border has to
+          // hug the three controls to read as one grouped stepper, while the
+          // group itself stays right-aligned as before.
+          <div className="ml-auto flex w-fit flex-row items-center gap-2 rounded-sm border border-teal-700 px-2 py-1">
+            <Button
+              variant={isLastOne ? "remove" : "decrement"}
+              dataKey={isLastOne ? "remove" : "decrement"}
+              onClick={() => decreaseCartQuantity(id)}
+            />
+            <span className="text-1xl">{quantity}</span>
             <Button
               variant="increment"
               dataKey="increment"
               onClick={() => increaseCartQuantity(id)}
-            />
-            <span className="text-1xl">{quantity} in cart</span>
-            <Button
-              variant="decrement"
-              dataKey="decrement"
-              onClick={() => decreaseCartQuantity(id)}
             />
           </div>
         )}

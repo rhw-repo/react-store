@@ -75,8 +75,10 @@ export const ShoppingCartProvider = ({
 
   const decreaseCartQuantity = (id: number) => {
     setCartItems((currItems) => {
-      if (currItems.find((item) => item.id === id) == null) {
-        // Filter to return only items where no id match is found
+      // Drop the item at the last one rather than decrementing to zero, which
+      // would leave a { quantity: 0 } entry that the cart drawer still renders
+      // as a row costing nothing.
+      if (currItems.find((item) => item.id === id)?.quantity === 1) {
         return currItems.filter((item) => item.id !== id);
       } else {
         return currItems.map((item) => {

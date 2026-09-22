@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 export type DataKey =
   | "increment"
   | "decrement"
+  | "remove"
   | "addToCart"
   | "goToStore"
   | "removeFromOpenedCart"
@@ -35,6 +36,18 @@ const plusIcon = (
   </svg>
 );
 
+const minusIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    aria-hidden="true"
+    focusable="false"
+    className="h-4 w-3.5 shrink-0 fill-current"
+  >
+    <path d="M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z" />
+  </svg>
+);
+
 const xMarkIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -56,14 +69,20 @@ export function getButtonText(dataKey: DataKey): ReactNode {
           <span className="sr-only">Increase quantity</span>
         </>
       );
-    // Trash rather than a minus: decrementing is the only way to take an item
-    // out of the cart now that the dedicated remove button is gone. The label
-    // still describes what the click actually does.
     case "decrement":
       return (
         <>
-          {trashIcon}
+          {minusIcon}
           <span className="sr-only">Decrease quantity</span>
+        </>
+      );
+    // Shown in place of the minus when the quantity is 1, where decrementing
+    // empties the item out of the cart. Icon and label both say so.
+    case "remove":
+      return (
+        <>
+          {trashIcon}
+          <span className="sr-only">Remove from cart</span>
         </>
       );
     case "addToCart":
