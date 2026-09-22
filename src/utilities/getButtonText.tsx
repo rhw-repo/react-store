@@ -76,8 +76,6 @@ export function getButtonText(dataKey: DataKey): ReactNode {
           <span className="sr-only">Decrease quantity</span>
         </>
       );
-    // Shown in place of the minus when the quantity is 1, where decrementing
-    // empties the item out of the cart. Icon and label both say so.
     case "remove":
       return (
         <>

@@ -12,10 +12,6 @@ function App() {
   return (
     <ErrorBoundary resetKey={location.pathname}>
       <ShoppingCartProvider>
-        {/* A min-h-screen column with main as the only growing child. Without
-            this the page is always taller than the viewport, because a
-            full-height page section stacks *below* the Navbar rather than
-            sharing the viewport with it. */}
         <div className="flex min-h-screen flex-col">
           <Navbar />
           <main className="flex flex-1 flex-col justify-center items-center">

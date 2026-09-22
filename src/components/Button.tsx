@@ -10,11 +10,6 @@ export interface ButtonProps
 }
 
 const buttonStyles = tv({
-  // Elevation sits below the card that holds the button: cards are shadow-lg,
-  // primary actions shadow-md, small icon actions shadow-sm, ghost/outline flat
-  // until hover. Each level lifts on hover and presses back down on active.
-  // Shadows are tinted to the button's own fill — an untinted shadow is close to
-  // invisible against saturated backgrounds like teal-700 / cyan-900.
   base: "font-body rounded-sm hover:cursor-pointer transition-shadow",
   variants: {
     variant: {
@@ -22,16 +17,12 @@ const buttonStyles = tv({
         "w-full bg-teal-700 text-neutral-100 hover:bg-teal-800 px-4 py-2 shadow-md shadow-teal-950/40 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
       blankPages:
         "w-full bg-teal-700 text-neutral-100 hover:bg-teal-800 px-4 py-2 landscape:text-sm rounded cursor-pointer mb-4 shadow-md shadow-teal-950/50 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
-      // Ghost buttons: the icon carries the colour, not a filled box. No
-      // box-shadow on either — with no visible surface, a shadow reads as a
-      // rectangle floating behind nothing.
       increment:
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-teal-800 rounded-sm transition-colors",
       decrement:
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-teal-800 rounded-sm transition-colors",
-      // Takes decrement's place at a quantity of 1, where the click empties the
-      // item out of the cart. Rose only here — on the minus it would signal a
-      // destruction that isn't happening.
+      // Rose only here: on the minus it would signal a destruction that isn't
+      // happening. This variant only renders at a quantity of 1.
       remove:
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-rose-600 active:text-rose-900 rounded-sm transition-colors",
       removeFromOpenedCart:

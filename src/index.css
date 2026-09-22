@@ -38,35 +38,19 @@
   --color-ink: #1c1c1c;
   --color-stone: oklch(92.3% 0.003 48.717);
 
-  /* The shared content column. Navbar, the Store grid and the cart drawer all
-     align to this on large screens, so it lives here rather than as a max-w-5xl
-     repeated across three files. Generates max-w-content. */
   --container-content: 64rem;
 
-  /* Elevation for the app's fixed surfaces. Shadows are tinted warm dark
-     (stone-900, rgb(28 25 23)) rather than the default near-black, which reads
-     as grime against the warm stone bars instead of as lift.
-     Geometry mirrors Tailwind's own md/sm steps so these sit in the same scale
-     as the shadow-* utilities used elsewhere.
-     Buttons are not here: their elevation lives in Button.tsx's tv() map. */
   --shadow-bar: 0 4px 6px -1px rgb(28 25 23 / 0.3), 0 2px 4px -2px
     rgb(28 25 23 / 0.3);
   /* Negative y-offset: a bottom bar's shadow must cast upward onto the content
      above it, or it falls off the page. No built-in utility does this. */
   --shadow-bar-inverted: 0 -6px 16px -4px rgb(28 25 23 / 0.4);
-  /* Product imagery: static, so no hover step — the card it sits in lifts instead. */
   --shadow-media: 0 1px 3px 0 rgb(28 25 23 / 0.4), 0 1px 2px -1px
     rgb(28 25 23 / 0.4);
 }
 
-/* Scrolling stays fully functional — wheel, trackpad, keyboard, touch and
-   programmatic scrolling are untouched. Only the bar itself is hidden.
-   Apply to component-level scroll areas; the page itself is handled in the
-   base layer below. */
 @utility scrollbar-none {
-  /* Firefox */
   scrollbar-width: none;
-  /* WebKit / Blink */
   &::-webkit-scrollbar {
     display: none;
   }
