@@ -5,7 +5,7 @@ export const Navbar = () => {
   const { openCart, cartQuantity } = useShoppingCart();
 
   return (
-    <nav className="font-body sticky bg-stone-300 shadow-sm w-screen">
+    <nav className="font-body sticky top-0 z-30 bg-stone-300 shadow-md shadow-stone-900/30 w-screen">
       <div className="flex justify-between px-8 gap-1 p-4 lg:max-w-5xl lg:mx-auto">
         <div className="flex justify-start">
           <NavLink
@@ -31,7 +31,7 @@ export const Navbar = () => {
           {cartQuantity > 0 && (
             <button
               onClick={openCart}
-              className="relative rounded-full border-teal-700 border w-[clamp(2.5rem,6vw,3.5rem)] aspect-square p-[clamp(0.25rem,2vw,0.5rem)]"
+              className="relative rounded-full border-teal-700 border w-[clamp(2.5rem,6vw,3.5rem)] aspect-square p-[clamp(0.25rem,2vw,0.5rem)] transition-shadow shadow-xs shadow-teal-950/30 hover:shadow-sm active:shadow-none"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
