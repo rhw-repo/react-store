@@ -21,7 +21,7 @@ const buttonStyles = tv({
       default:
         "w-full bg-teal-700 text-neutral-100 hover:bg-teal-800 px-4 py-2 shadow-md shadow-teal-950/40 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
       blankPages:
-        "w-full bg-cyan-900 text-neutral-100 hover:bg-teal-800 px-4 py-2 landscape:text-sm border rounded cursor-pointer mb-4 shadow-md shadow-cyan-950/50 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
+        "w-full bg-teal-700 text-neutral-100 hover:bg-teal-800 px-4 py-2 landscape:text-sm rounded cursor-pointer mb-4 shadow-md shadow-teal-950/50 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
       incrementDecrement:
         "flex justify-center items-center w-8 h-8 bg-teal-700 hover:bg-teal-800 text-neutral-100 rounded-sm shadow-sm shadow-teal-950/40 hover:shadow-md active:shadow-xs",
       removeFromCart:
