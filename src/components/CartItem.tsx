@@ -17,7 +17,7 @@ export const CartItem = ({ id, quantity }: CartItemProps) => {
   return (
     <div className="flex gap-4 justify-between items-start">
       <div className="flex gap-2 justify-start items-center">
-        <div key={id} className="shadow-sm p-0 rounded-sm">
+        <div key={id} className="shadow-sm shadow-stone-900/40 p-0 rounded-sm">
           <div className="aspect-3/2 w-20">
             <img
               src={item.imgUrl}

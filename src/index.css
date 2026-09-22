@@ -34,7 +34,7 @@
   /* Headings, links, button text */
   --font-ui: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
 
-  --color-shell: oklch(97% 0.001 106.424);
+  --color-shell: pink;
   --color-ink: #1c1c1c;
   --color-stone: oklch(92.3% 0.003 48.717);
 }
