@@ -6,7 +6,7 @@ export const Navbar = () => {
 
   return (
     <nav className="font-body sticky top-0 z-30 bg-stone-300 shadow-bar w-screen">
-      <div className="flex justify-between px-8 gap-1 p-4 lg:max-w-5xl lg:mx-auto">
+      <div className="flex justify-between px-8 gap-1 p-4 lg:max-w-content lg:mx-auto">
         <div className="flex justify-start">
           <NavLink
             to="/"

@@ -33,11 +33,12 @@ export const ShoppingCart = () => {
         isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
-      <aside
+      <div
         role="dialog"
         aria-modal="true"
         aria-hidden={!isOpen}
-        className={`fixed inset-y-0 right-0 left-auto m-0 z-50 w-full max-w-md bg-white shadow-2xl
+        inert={!isOpen}
+        className={`fixed inset-y-0 left-auto right-[max(0px,calc((100%_-_var(--container-content))_/_2))] m-0 z-50 w-full max-w-md bg-white shadow-2xl
           transform transition-transform duration-300 ease-in-out
           flex flex-col
           ${isOpen ? "translate-x-0" : "translate-x-full"}
@@ -72,7 +73,7 @@ export const ShoppingCart = () => {
         <footer className="px-6 py-4 border-t">
           <Button variant="default" dataKey="checkout" />
         </footer>
-      </aside>
+      </div>
     </div>
   );
 };

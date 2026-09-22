@@ -38,6 +38,11 @@
   --color-ink: #1c1c1c;
   --color-stone: oklch(92.3% 0.003 48.717);
 
+  /* The shared content column. Navbar, the Store grid and the cart drawer all
+     align to this on large screens, so it lives here rather than as a max-w-5xl
+     repeated across three files. Generates max-w-content. */
+  --container-content: 64rem;
+
   /* Elevation for the app's fixed surfaces. Shadows are tinted warm dark
      (stone-900, rgb(28 25 23)) rather than the default near-black, which reads
      as grime against the warm stone bars instead of as lift.
