@@ -16,7 +16,7 @@ export const Footer: FC = () => {
   ];
 
   return (
-    <footer className="sticky flex justify-center items-center bg-stone-500 shadow-sm w-screen">
+    <footer className="font-body sticky flex justify-center items-center bg-stone-500 shadow-sm w-screen">
       <section className="max-w-5xl p-4 text-gray-600 text-sm md:text-base lg:text-xl">
         {links.map((link) => (
           <a

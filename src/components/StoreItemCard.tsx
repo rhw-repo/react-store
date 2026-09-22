@@ -25,7 +25,10 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
   const quantity = getItemQuantity(id);
 
   return (
-    <div key={id} className="flex flex-col shadow-sm p-4 rounded-sm h-full">
+    <div
+      key={id}
+      className="flex flex-col shadow-md hover:shadow-lg transition-shadow p-4 rounded-sm h-full"
+    >
       <div className="aspect-3/2 w-full overflow-hidden">
         <img
           src={imgUrl}
