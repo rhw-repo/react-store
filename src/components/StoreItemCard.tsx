@@ -34,15 +34,15 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
         />
       </div>
       <div className="flex justify-between items-baseline mb-8">
-        <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-black-600 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950">
+        <h4 className="text-xl sm:text-2xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-xl text-stone-950 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950">
           {name}
-        </h2>
+        </h4>
         <p className="text-lg font-bold text-gray-800 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950">
           {formatCurrency(price)}
         </p>
       </div>
 
-      <div className="mt-auto">
+      <div>
         {quantity === 0 ? (
           <Button
             variant="default"
@@ -50,8 +50,13 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
             onClick={() => increaseCartQuantity(id)}
           />
         ) : (
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex justify-center items-center gap-2">
+          <div className="flex flex-row justify-between items-center w-full">
+            <Button
+              variant="removeFromCart"
+              dataKey="remove"
+              onClick={() => removeFromCart(id)}
+            />
+            <div className="flex flex-row justify-end items-center gap-2">
               <Button
                 variant="incrementDecrement"
                 dataKey="increment"
@@ -64,11 +69,6 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
                 onClick={() => decreaseCartQuantity(id)}
               />
             </div>
-            <Button
-              variant="removeFromCart"
-              dataKey="remove"
-              onClick={() => removeFromCart(id)}
-            />
           </div>
         )}
       </div>

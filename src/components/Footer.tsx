@@ -16,7 +16,7 @@ export const Footer: FC = () => {
   ];
 
   return (
-    <footer className="sticky flex justify-center items-center bg-white shadow-sm w-screen">
+    <footer className="sticky flex justify-center items-center bg-stone-500 shadow-sm w-screen">
       <section className="max-w-5xl p-4 text-gray-600 text-sm md:text-base lg:text-xl">
         {links.map((link) => (
           <a
@@ -24,7 +24,7 @@ export const Footer: FC = () => {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-white rounded-sm hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 rounded:sm active:text-purple-950 p-2 lg:px-8"
+            className="rounded-sm text-neutral-50 hover:text-neutral-50 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 rounded:sm active:text-purple-950 p-2 lg:px-8"
           >
             {link.label}
           </a>

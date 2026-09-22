@@ -1,6 +1,6 @@
 import { tv, type VariantProps } from "tailwind-variants";
 import type { FC, ButtonHTMLAttributes } from "react";
-import { getButtonText, type DataKey } from "../utilities/getButtonText";
+import { getButtonText, type DataKey } from "../utilities/getButtonText.tsx";
 
 export interface ButtonProps
   extends
@@ -14,17 +14,17 @@ const buttonStyles = tv({
   variants: {
     variant: {
       default:
-        "w-full bg-blue-700 text-neutral-100 hover:bg-blue-400 px-4 py-2",
+        "w-full bg-cyan-900 text-neutral-100 hover:bg-blue-400 px-4 py-2",
       blankPages:
-        "w-full bg-blue-700 text-neutral-100 hover:bg-blue-400 px-4 py-2 landscape:text-sm border rounded cursor-pointer mb-4",
+        "w-full bg-cyan-900 text-neutral-100 hover:bg-blue-400 px-4 py-2 landscape:text-sm border rounded cursor-pointer mb-4",
       incrementDecrement:
-        "flex justify-center items-center w-8 h-8 font-bold bg-blue-700 text-neutral-100 rounded-sm px-4 py-0.5",
+        "flex justify-center items-center w-8 h-8 bg-cyan-900 text-neutral-100 rounded-sm",
       removeFromCart:
-        "bg-red-400 text-xs sm:text-sm md:text-base text-neutral-100 rounded-sm py-1.5 px-4 m-3",
+        "inline-flex justify-center items-center w-8 h-8 bg-red-400 text-neutral-100 rounded-full",
       removeFromOpenedCart:
         "w-8 h-8 flex justify-center items-center border border-red-600 rounded-sm text-red-600 transition-colors hover:text-white hover:bg-red-600 active:bg-red-900 active:text-white",
       closeCart:
-        "p-2 text-gray-600 text-xs hover:text-black focus:outline-none focus:ring-2 focus:ring-blue-600 rounded",
+        "inline-flex justify-center items-center p-2 text-gray-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-blue-600 rounded",
     },
   },
 });
