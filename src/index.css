@@ -59,7 +59,28 @@
     rgb(28 25 23 / 0.4);
 }
 
+/* Scrolling stays fully functional — wheel, trackpad, keyboard, touch and
+   programmatic scrolling are untouched. Only the bar itself is hidden.
+   Apply to component-level scroll areas; the page itself is handled in the
+   base layer below. */
+@utility scrollbar-none {
+  /* Firefox */
+  scrollbar-width: none;
+  /* WebKit / Blink */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @layer base {
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     background-color: var(--color-shell);
   }

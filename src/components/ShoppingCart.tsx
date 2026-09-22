@@ -38,7 +38,7 @@ export const ShoppingCart = () => {
       // area mid-transition, which the browser would otherwise rubber-band.
       // The durations here must stay >= the panel's, or the dialog stops being
       // displayed while the panel is still sliding out on close.
-      className={`group fixed inset-0 m-0 p-0 h-full max-h-full w-full max-w-none border-none bg-transparent overflow-hidden
+      className={`group fixed inset-0 h-full max-h-full w-full max-w-none bg-transparent overflow-hidden
         hidden open:block
         transition-[display,overlay] transition-discrete duration-500 sm:duration-300
         backdrop:bg-black/50 backdrop:opacity-0 open:backdrop:opacity-100 starting:open:backdrop:opacity-0
@@ -70,7 +70,7 @@ export const ShoppingCart = () => {
             />
           </header>
 
-          <div className="p-6 overflow-y-auto">
+          <div className="p-6 overflow-y-auto scrollbar-none">
             <div className="flex flex-col gap-4 text-gray-500">
               {cartItems.map((item) => (
                 <CartItem key={item.id} {...item} />

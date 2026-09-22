@@ -15,7 +15,7 @@ const BlankPagesTemplate: FC<BlankPagesTemplateProps> = ({
   return (
     <>
       {/* Handles component display within page */}
-      <section className="flex justify-center items-center h-screen w-full bg-[url('/imgs/error-boundary-bg-image.svg')] bg-cover bg-center">
+      <section className="flex justify-center items-center flex-1 w-full bg-[url('/imgs/error-boundary-bg-image.svg')] bg-cover bg-center">
         {/* Handles content container */}
         <div className="flex flex-col justify-center items-center landscape:flex-row landscape:h-full landscape:sm:h-[60vh] landscape:md:h-[80vh] landscape:lg:h-auto landscape:xl:flex-col max-w-3xl w-full [@media_(min-width:768px)_and_(max-width:1024px)_and_(orientation:portrait)]:max-w-lg p-5 rounded-xl bg-gray-50 text-neutral-900 text-center text-balance text-2xl font-bold portrait:m-8 portrait:sm:md-4 m-4">
           {/* Column 1 in landscape */}
