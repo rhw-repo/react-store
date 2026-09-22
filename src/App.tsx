@@ -29,8 +29,8 @@ function App() {
               }
             />
           </Routes>
-          <Footer />
         </main>
+        <Footer />
       </ShoppingCartProvider>
     </ErrorBoundary>
   );
