@@ -31,7 +31,7 @@ export const Navbar = () => {
           {cartQuantity > 0 && (
             <button
               onClick={openCart}
-              className="relative rounded-full border-teal-700 border w-[clamp(2.5rem,6vw,3.5rem)] aspect-square p-[clamp(0.25rem,2vw,0.5rem)] transition-shadow shadow-xs shadow-teal-950/30 hover:shadow-sm active:shadow-none"
+              className="relative rounded-full border-teal-700 border w-[clamp(2.5rem,6vw,3.5rem)] aspect-square p-[clamp(0.25rem,2vw,0.5rem)] transition-shadow shadow-sm shadow-teal-950/65 hover:shadow-md hover:shadow-teal-950/75 active:shadow-none"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
