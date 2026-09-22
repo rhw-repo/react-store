@@ -27,7 +27,7 @@ const buttonStyles = tv({
       removeFromCart:
         "inline-flex justify-center items-center w-8 h-8 bg-rose-400 hover:bg-rose-500 text-neutral-100 rounded-full shadow-sm shadow-rose-900/40 hover:shadow-md active:shadow-xs",
       removeFromOpenedCart:
-        "w-8 h-8 flex justify-center items-center border border-rose-400 rounded-sm text-rose-600 transition-all hover:text-neutral-50 hover:bg-rose-600 active:bg-rose-900 active:text-neutral-500 shadow-xs shadow-rose-900/30 hover:shadow-sm active:shadow-none",
+        "w-8 h-8 flex justify-center items-center border border-rose-400 rounded-sm text-rose-600 transition-all hover:text-neutral-50 hover:bg-rose-600 active:bg-rose-900 active:text-neutral-500 shadow-xs shadow-rose-900/40 hover:shadow-md hover:shadow-rose-900/60 active:shadow-none",
       closeCart:
         "inline-flex justify-center items-center p-2 text-gray-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-blue-600 rounded hover:shadow-sm hover:shadow-gray-900/30 active:shadow-none",
     },
