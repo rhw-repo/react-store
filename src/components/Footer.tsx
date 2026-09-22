@@ -15,11 +15,8 @@ export const Footer: FC = () => {
     { label: "GitHub", href: "https://github.com/rhw-repo" },
   ];
 
-  // The footer's shadow needs a negative y-offset: the built-in shadow-* utilities
-  // cast downward, so on a bottom bar they fall off the page instead of separating
-  // it from the content above. Colour is stone-900 at 40%, matching the Navbar tint.
   return (
-    <footer className="font-body sticky bottom-0 z-30 flex justify-center items-center bg-stone-500 shadow-[0_-6px_16px_-4px_#1c191766] w-screen">
+    <footer className="font-body sticky bottom-0 z-30 flex justify-center items-center bg-stone-500 shadow-bar-inverted w-screen">
       <section className="max-w-5xl p-4 text-gray-600 text-sm md:text-base lg:text-xl">
         {links.map((link) => (
           <a

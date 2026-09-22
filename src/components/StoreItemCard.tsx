@@ -29,7 +29,7 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
       key={id}
       className="flex flex-col shadow-lg hover:shadow-xl transition-shadow p-4 rounded-sm h-full"
     >
-      <div className="aspect-3/2 w-full overflow-hidden rounded-sm shadow-sm shadow-stone-900/40">
+      <div className="aspect-3/2 w-full overflow-hidden rounded-sm shadow-media">
         <img
           src={imgUrl}
           alt={name}
