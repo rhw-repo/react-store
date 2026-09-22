@@ -15,11 +15,11 @@
   font-display: swap;
 }
 
-/* Axis: wght 100-900. */
+/* Static file, single weight. */
 @font-face {
-  font-family: "Geist";
-  src: url("/Geist-Variable.woff2") format("woff2");
-  font-weight: 100 900;
+  font-family: "Instrument Serif";
+  src: url("/InstrumentSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -30,7 +30,7 @@
    --------------------------------------------------------------------------- */
 @theme {
   /* Body copy */
-  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Instrument Serif", ui-serif, system-ui, serif;
   /* Headings, links, button text */
   --font-ui: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
 
@@ -41,21 +41,17 @@
 
 @layer base {
   body {
-    font-family: var(--font-body);
     background-color: var(--color-shell);
   }
 
   /* Buttons get font-ui from Button's tv() base instead, since they need it
      alongside other variant classes. Components that set their own text-*
      utility override the colour here, as Navbar's links do. */
+  p,
   h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  a {
-    font-family: var(--font-ui);
+  span,
+  h6 {
+    font-family: var(--font-body);
     color: var(--color-ink);
   }
 }

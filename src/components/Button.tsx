@@ -10,7 +10,7 @@ export interface ButtonProps
 }
 
 const buttonStyles = tv({
-  base: "font-ui rounded-sm hover:cursor-pointer",
+  base: "font-body rounded-sm hover:cursor-pointer",
   variants: {
     variant: {
       default:

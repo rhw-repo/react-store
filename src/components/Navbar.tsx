@@ -5,7 +5,7 @@ export const Navbar = () => {
   const { openCart, cartQuantity } = useShoppingCart();
 
   return (
-    <nav className="sticky bg-stone shadow-sm w-screen">
+    <nav className="font-body sticky bg-stone shadow-sm w-screen">
       <div className="flex justify-between px-8 gap-1 p-4 lg:max-w-5xl lg:mx-auto">
         <div className="flex justify-start">
           <NavLink
