@@ -36,7 +36,7 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
           className="w-full h-full object-cover rounded-sm"
         />
       </div>
-      <div className="flex justify-between items-baseline mb-8">
+      <div className="flex justify-between items-baseline mb-8 mt-2">
         <h4 className="text-xl sm:text-2xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-xl text-stone-950 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950">
           {name}
         </h4>
