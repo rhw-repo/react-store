@@ -22,10 +22,13 @@ const buttonStyles = tv({
         "w-full bg-teal-700 text-neutral-100 hover:bg-teal-800 px-4 py-2 shadow-md shadow-teal-950/40 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
       blankPages:
         "w-full bg-teal-700 text-neutral-100 hover:bg-teal-800 px-4 py-2 landscape:text-sm rounded cursor-pointer mb-4 shadow-md shadow-teal-950/50 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
-      incrementDecrement:
+      increment:
         "flex justify-center items-center w-8 h-8 bg-teal-700 hover:bg-teal-800 text-neutral-100 rounded-sm shadow-sm shadow-teal-950/40 hover:shadow-md active:shadow-xs",
-      removeFromCart:
-        "inline-flex justify-center items-center w-8 h-8 bg-rose-400 hover:bg-rose-500 text-neutral-100 rounded-full shadow-sm shadow-rose-900/40 hover:shadow-md active:shadow-xs",
+      // Matches increment at rest, then turns rose on hover: the trash icon can
+      // empty the item out of the cart, so it earns the destructive colour only
+      // at the point the user is about to commit to it.
+      decrement:
+        "flex justify-center items-center w-8 h-8 bg-teal-700 hover:bg-rose-600 active:bg-rose-900 text-neutral-100 rounded-sm transition-all shadow-sm shadow-teal-950/40 hover:shadow-md hover:shadow-rose-900/60 active:shadow-xs",
       removeFromOpenedCart:
         "w-8 h-8 flex justify-center items-center border border-rose-400 rounded-sm text-rose-600 transition-all hover:text-neutral-50 hover:bg-rose-600 active:bg-rose-900 active:text-neutral-500 shadow-xs shadow-rose-900/40 hover:shadow-md hover:shadow-rose-900/60 active:shadow-none",
       closeCart:

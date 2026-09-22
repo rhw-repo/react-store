@@ -15,12 +15,8 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
   price,
   imgUrl,
 }) => {
-  const {
-    getItemQuantity,
-    increaseCartQuantity,
-    decreaseCartQuantity,
-    removeFromCart,
-  } = useShoppingCart();
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } =
+    useShoppingCart();
 
   const quantity = getItemQuantity(id);
 
@@ -46,25 +42,18 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
             onClick={() => increaseCartQuantity(id)}
           />
         ) : (
-          <div className="flex flex-row justify-between items-center w-full">
+          <div className="flex flex-row justify-end items-center w-full gap-2">
             <Button
-              variant="removeFromCart"
-              dataKey="remove"
-              onClick={() => removeFromCart(id)}
+              variant="increment"
+              dataKey="increment"
+              onClick={() => increaseCartQuantity(id)}
             />
-            <div className="flex flex-row justify-end items-center gap-2">
-              <Button
-                variant="incrementDecrement"
-                dataKey="increment"
-                onClick={() => increaseCartQuantity(id)}
-              />
-              <span className="text-1xl">{quantity} in cart</span>
-              <Button
-                variant="incrementDecrement"
-                dataKey="decrement"
-                onClick={() => decreaseCartQuantity(id)}
-              />
-            </div>
+            <span className="text-1xl">{quantity} in cart</span>
+            <Button
+              variant="decrement"
+              dataKey="decrement"
+              onClick={() => decreaseCartQuantity(id)}
+            />
           </div>
         )}
       </div>

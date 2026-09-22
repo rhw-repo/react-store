@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 export type DataKey =
   | "increment"
   | "decrement"
-  | "remove"
   | "addToCart"
   | "goToStore"
   | "removeFromOpenedCart"
@@ -18,7 +17,7 @@ const trashIcon = (
     viewBox="0 0 448 512"
     aria-hidden="true"
     focusable="false"
-    className="h-4 w-3.5 fill-current"
+    className="h-4 w-3.5 shrink-0 fill-current"
   >
     <path d="M136.7 5.9C141.1-7.2 153.3-16 167.1-16l113.9 0c13.8 0 26 8.8 30.4 21.9L320 32 416 32c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 8.7-26.1zM32 144l384 0 0 304c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-304zm88 64c-13.3 0-24 10.7-24 24l0 192c0 13.3 10.7 24 24 24s24-10.7 24-24l0-192c0-13.3-10.7-24-24-24zm104 0c-13.3 0-24 10.7-24 24l0 192c0 13.3 10.7 24 24 24s24-10.7 24-24l0-192c0-13.3-10.7-24-24-24zm104 0c-13.3 0-24 10.7-24 24l0 192c0 13.3 10.7 24 24 24s24-10.7 24-24l0-192c0-13.3-10.7-24-24-24z" />
   </svg>
@@ -33,18 +32,6 @@ const plusIcon = (
     className="h-4 w-3.5 shrink-0 fill-current"
   >
     <path d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z" />
-  </svg>
-);
-
-const minusIcon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 448 512"
-    aria-hidden="true"
-    focusable="false"
-    className="h-4 w-3.5 shrink-0 fill-current"
-  >
-    <path d="M0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32z" />
   </svg>
 );
 
@@ -69,18 +56,14 @@ export function getButtonText(dataKey: DataKey): ReactNode {
           <span className="sr-only">Increase quantity</span>
         </>
       );
+    // Trash rather than a minus: decrementing is the only way to take an item
+    // out of the cart now that the dedicated remove button is gone. The label
+    // still describes what the click actually does.
     case "decrement":
       return (
         <>
-          {minusIcon}
-          <span className="sr-only">Decrease quantity</span>
-        </>
-      );
-    case "remove":
-      return (
-        <>
           {trashIcon}
-          <span className="sr-only">Remove</span>
+          <span className="sr-only">Decrease quantity</span>
         </>
       );
     case "addToCart":
