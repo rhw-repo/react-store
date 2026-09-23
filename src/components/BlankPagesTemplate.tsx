@@ -29,7 +29,7 @@ const BlankPagesTemplate: FC<BlankPagesTemplateProps> = ({
           </div>
 
           {/* Column 2 in landscape */}
-          <div className="aspect-3/2 p-4 overflow-hidden mb-8 landscape:m-0 flex-col landscape:flex-1">
+          <div className="aspect-3/2 p-4 overflow-hidden landscape:m-0 flex-col landscape:flex-1">
             <img
               src="/imgs/error-boundary-image.webp"
               alt="A retro style robot toy stares with a fixed expression."
@@ -38,7 +38,7 @@ const BlankPagesTemplate: FC<BlankPagesTemplateProps> = ({
           </div>
 
           {/* Column 3 in landscape */}
-          <div className="flex flex-col justify-center mt-4 gap-4 landscape:justify-center landscape:flex-1 landscape:h-full landscape:mt-0">
+          <div className="flex flex-col justify-center gap-4 landscape:justify-center landscape:flex-1 landscape:h-full">
             <p className="text-base landscape:text-base font-medium text-gray-700 text-balance">
               {message}
             </p>

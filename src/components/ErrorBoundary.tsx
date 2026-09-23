@@ -43,24 +43,24 @@ class ErrorBoundary extends Component<Props, State> {
       return (
         this.props.fallback || (
           <section className="bg-[url('/imgs/error-boundary-bg-image.svg')] bg-cover bg-center flex justify-center items-center h-screen">
-            <div className="flex flex-col justify-center items-center landscape:flex-row landscape:h-[80vh] landscape:lg:h-auto landscape:xl:flex-col w-3xl p-5 rounded-xl bg-gray-50 text-neutral-900 text-center text-balance text-2xl font-bold portrait:m-8 portrait:sm:md-4 m-4">
-              <div className="landscape:flex flex-col">
-                <h1 className="text-7xl landscape:text-6xl md:text-9xl text-gray-600 m-4">
+            <div className="flex flex-col justify-center items-center landscape:flex-row landscape:h-full landscape:sm:h-[60vh] landscape:md:h-[80vh] landscape:lg:h-auto landscape:xl:flex-col max-w-3xl w-full [@media_(min-width:768px)_and_(max-width:1024px)_and_(orientation:portrait)]:max-w-lg p-5 rounded-xl bg-gray-50 text-neutral-900 text-center text-balance text-2xl font-bold shadow-xl shadow-stone-900/30 portrait:m-8 portrait:sm:md-4 m-4">
+              <div className="flex-col landscape:flex-1 landscape:justify-center">
+                <h1 className="text-5xl landscape:text-5xl md:text-9xl [@media_(min-width:768px)_and_(max-width:1024px)_and_(orientation:portrait)]:text-5xl text-gray-600 m-4">
                   Oops!
                 </h1>
-                <h2 className="text-gray-500 text-3xl md:text-4xl landscape:text-2xl">
+                <h2 className="text-gray-500 text-base text-balance md:text-4xl landscape:text-xl landscape:flex-1">
                   Something went wrong.
                 </h2>
               </div>
-              <div className="aspect-3/2 p-4 overflow-hidden mb-8 landscape:mb-0">
+              <div className="aspect-3/2 p-4 overflow-hidden landscape:m-0 flex-col landscape:flex-1">
                 <img
                   src="/imgs/error-boundary-image.webp"
                   alt="A retro style robot toy stares with a fixed expression."
-                  className="object-cover"
+                  className="w-full h-full object-cover object-top rounded-sm shadow-media"
                 />
               </div>
-              <div className="flex flex-col justify-between mt-4 gap-4">
-                <p className="text-2xl landscape:text-base font-medium text-gray-500 text-balance">
+              <div className="flex flex-col justify-center gap-4 landscape:justify-center landscape:flex-1 landscape:h-full">
+                <p className="text-base landscape:text-base font-medium text-gray-700 text-balance">
                   We apologize for the inconvenience. Please use the button
                   below to go back.
                 </p>

@@ -23,8 +23,8 @@ function App() {
                 path="*"
                 element={
                   <BlankPagesTemplate
-                    heading="Page Not Found"
-                    subheading="That address doesn't match any page on this site."
+                    heading="404 Page Not Found"
+                    subheading="That address doesn't match any page."
                     message="Please visit the Store page."
                   />
                 }
