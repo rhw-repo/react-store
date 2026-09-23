@@ -3,7 +3,7 @@ import { Home } from "./pages/Home";
 import { Store } from "./pages/Store";
 import { About } from "./pages/About";
 import { Navbar } from "./components/Navbar";
-import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import { ShoppingCartProvider } from "./context/ShoppingCartProvider";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Footer } from "./components/Footer";
 import BlankPagesTemplate from "./components/BlankPagesTemplate";
