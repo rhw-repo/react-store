@@ -22,7 +22,7 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
   const isLastOne = quantity === 1;
 
   return (
-    <div className="flex flex-col shadow-lg hover:shadow-xl transition-shadow p-4 rounded-sm h-full">
+    <div className="flex flex-col bg-stone-100 shadow-xl shadow-stone-900/15 hover:shadow-stone-900/20 transition-shadow p-4 rounded-sm h-full">
       <div className="aspect-3/2 w-full overflow-hidden rounded-sm shadow-media">
         {/* alt="" deliberately: the <h4> below is the same string, so a filled
             alt makes screen readers announce it twice. */}
