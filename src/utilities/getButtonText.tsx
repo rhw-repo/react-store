@@ -90,12 +90,7 @@ export function getButtonText(dataKey: DataKey): ReactNode {
     case "checkout":
       return "Checkout";
     case "removeFromOpenedCart":
-      return (
-        <>
-          {xMarkIcon}
-          <span className="sr-only">Remove from cart</span>
-        </>
-      );
+      return "Delete";
     case "closeCart":
       return (
         <>

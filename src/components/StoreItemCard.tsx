@@ -24,15 +24,17 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
   return (
     <div className="flex flex-col shadow-lg hover:shadow-xl transition-shadow p-4 rounded-sm h-full">
       <div className="aspect-3/2 w-full overflow-hidden rounded-sm shadow-media">
-        <img src={imgUrl} alt={name} className="w-full h-full object-cover" />
+        {/* alt="" deliberately: the <h4> below is the same string, so a filled
+            alt makes screen readers announce it twice. */}
+        <img src={imgUrl} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="flex justify-between items-baseline mb-8 mt-2">
         <h4 className="text-xl sm:text-2xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-xl text-stone-950 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950">
           {name}
         </h4>
-        <p className="text-lg font-bold text-gray-800 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950">
+        <h5 className="text-lg font-bold text-gray-800 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950">
           {formatCurrency(price)}
-        </p>
+        </h5>
       </div>
 
       <div>
