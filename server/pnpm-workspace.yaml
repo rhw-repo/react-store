@@ -1,0 +1,13 @@
+minimumReleaseAge: 10080
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
+
+overrides:
+  undici-types: ">=7.29.1"
+  esbuild: ">=0.28.1"
+  hono: ">=4.13.7"
+  "@hono/node-server": ">=2.0.10"
+
+allowBuilds:
+  "@stripe/cli": true
+  esbuild: true
