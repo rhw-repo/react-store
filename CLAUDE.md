@@ -8,6 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Keep `CLAUDE.md` and `README.md` at the repo root. Tailwind v4 scans the tree under its own root for class names, and these files quote a lot of utilities in prose (`bg-teal-700`, `shadow-bar`); when they sat inside the scanned tree they added ~1 kB of CSS that no component used. Moving either one into `client/` reinstates that.
 
+Don't add `source("…")` to the `@import "tailwindcss"` line in [client/src/index.css](client/src/index.css) to scope scanning to `src`. It was tried and removed: Tailwind's automatic base path is already `client/`, so the directive produced a byte-identical bundle (same content hash), while `source()` is not valid CSS — VS Code's built-in validator reports *semi-colon expected* on it as a parse error, which no lint setting can suppress. The `@source not` line below it is worth the unknown-at-rule warning; `source()` was not worth the error.
+
 This project uses **pnpm** (pinned via `packageManager` in package.json). Don't run `npm install` — it would regenerate an npm lockfile alongside `pnpm-lock.yaml`.
 
 ```bash
