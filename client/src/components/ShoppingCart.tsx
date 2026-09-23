@@ -43,7 +43,7 @@ export const ShoppingCart = () => {
         >
           <header className="flex items-center justify-between px-6 py-4 border-b">
             <h2 id="cart-heading" className="text-xl font-semibold">
-              Cart
+              Basket
             </h2>
             <Button
               variant="closeCart"
