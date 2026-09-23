@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useShoppingCart } from "../hooks/useShoppingCart";
 
 export const Navbar = () => {
   const { openCart, cartQuantity } = useShoppingCart();
