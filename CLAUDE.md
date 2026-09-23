@@ -46,7 +46,7 @@ Per the README, this is a sandbox for practising Tailwind CSS with DRY styling t
 
 **Prices** always render through [formatCurrency](src/utilities/formatCurrency.ts) (EUR, locale-default formatting).
 
-**Images** live in `public/imgs/` and are referenced by absolute path (`/imgs/name.webp`) from `items.json` or imported as `"/imgs/..."`. The README carries per-image photographer credits; adding an image means adding its credit there.
+**Images** live in `public/imgs/` and are referenced by absolute path (`/imgs/name.webp`) from `items.json` or imported as `"/imgs/..."`. The README carries per-image photographer credits; adding an image means adding its credit there. Product images in [StoreItemCard](src/components/StoreItemCard.tsx) and [CartItem](src/components/CartItem.tsx) carry `alt=""` on purpose — the item name renders as text right beside them, so a filled `alt` is redundant and WAVE flags it. Decorative images with no adjacent duplicate text, like the robot in [BlankPagesTemplate](src/components/BlankPagesTemplate.tsx), keep a descriptive `alt`.
 
 **TypeScript** is strict with `noUnusedLocals`, `noUnusedParameters`, `erasableSyntaxOnly`, and `verbatimModuleSyntax` — type-only imports must be written `import type { ... }` or `import { type Foo }`, as the existing files do.
 

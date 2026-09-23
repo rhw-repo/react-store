@@ -40,13 +40,13 @@
 
   --container-content: 64rem;
 
-  --shadow-bar: 0 4px 6px -1px rgb(28 25 23 / 0.3), 0 2px 4px -2px
-    rgb(28 25 23 / 0.3);
+  --shadow-bar:
+    0 4px 6px -1px rgb(28 25 23 / 0.3), 0 2px 4px -2px rgb(28 25 23 / 0.3);
   /* Negative y-offset: a bottom bar's shadow must cast upward onto the content
      above it, or it falls off the page. No built-in utility does this. */
   --shadow-bar-inverted: 0 -6px 16px -4px rgb(28 25 23 / 0.4);
-  --shadow-media: 0 1px 3px 0 rgb(28 25 23 / 0.4), 0 1px 2px -1px
-    rgb(28 25 23 / 0.4);
+  --shadow-media:
+    0 1px 3px 0 rgb(28 25 23 / 0.4), 0 1px 2px -1px rgb(28 25 23 / 0.4);
 }
 
 @utility scrollbar-none {
@@ -75,6 +75,7 @@
   p,
   h1,
   /*span,*/
+  h5,
   h6 {
     font-family: var(--font-body);
     color: var(--color-ink);
