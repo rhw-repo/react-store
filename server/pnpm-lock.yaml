@@ -1,3 +1,104 @@
+---
+lockfileVersion: '9.0'
+
+importers:
+
+  .:
+    configDependencies: {}
+    packageManagerDependencies:
+      pnpm:
+        specifier: 12.3.4
+        version: 12.3.4
+
+packages:
+
+  '@pnpm/exe.darwin-arm64@12.3.4':
+    resolution: {integrity: sha512-PAyUol8T1+/+ViOiXAt51ECA+QnfXCqz6foL4bW+LsoX0NcVd5XVEM2mRQu+LV4oc7uRz9zf9U0P+XFfuQeDAw==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@pnpm/exe.darwin-x64@12.3.4':
+    resolution: {integrity: sha512-fxP9JCk0Cdye+ePuj+GJJLMUMTqHGWRdb1dtv4How876uQ2ehxvenpgiYAir/ceO9PsYUZkFTtyZdx+rRu5QOA==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@pnpm/exe.linux-arm64-musl@12.3.4':
+    resolution: {integrity: sha512-FBOt0/7ye6O6q4AllVV5QMviB6qE6fqkeczV/+MDWQsmo+QJrlfsh6X7CpH/tClVpBZEyIbjpUoT8bNhCYBxEg==}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@pnpm/exe.linux-arm64@12.3.4':
+    resolution: {integrity: sha512-t71AVA7LRqiKTyZ5xMYaZc2n5DfdpMbfokZuiIOXHBOM03ECnF0t4iYwaBDqJgVjlKYUOwaF/bRQajGNA4cJ4w==}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@pnpm/exe.linux-x64-musl@12.3.4':
+    resolution: {integrity: sha512-RPmk7Jb/aYaFvL2iyDN/AtMY+hUEsue732WmXpcuQ9tBpMnGyA5py7Z3+e+qmQaJ0zY/4ni9jJiyPBQHujmv6w==}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@pnpm/exe.linux-x64@12.3.4':
+    resolution: {integrity: sha512-2ZqOlSPkfwX1h5cR+FPiWf8+F+2hZT/3TvhUK5sigHqwaQCIiq8R7CGxhndKs63JtcLi2a1Qpo+wX/EoyfjyJQ==}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@pnpm/exe.win32-arm64@12.3.4':
+    resolution: {integrity: sha512-ANyrHqyqco6SXBysUTRF74itDyyraea7IbFsKFdNXTjcFnfycTDx37EwuhdpPYFNSIh2JhUG4fByclsRfiHX7w==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@pnpm/exe.win32-x64@12.3.4':
+    resolution: {integrity: sha512-WH/KqBPY/hq2Tb7SgQltEZytimcjgKRaCRL/aM9CI0c67iKc5TVmHUhIiL3Ux9FB4bWn36i6XewUcScQI+zG8w==}
+    cpu: [x64]
+    os: [win32]
+
+  pnpm@12.3.4:
+    resolution: {integrity: sha512-lhqkH7B32joEpEHZ+OFevAyW2o73ELLrZ7+e58sGEOq9SPH9hfUc/+c4RnhfoPh8VqOocqHYk/hEZ0G1zORUVw==}
+    engines: {node: '>=18.*'}
+    hasBin: true
+
+snapshots:
+
+  '@pnpm/exe.darwin-arm64@12.3.4':
+    optional: true
+
+  '@pnpm/exe.darwin-x64@12.3.4':
+    optional: true
+
+  '@pnpm/exe.linux-arm64-musl@12.3.4':
+    optional: true
+
+  '@pnpm/exe.linux-arm64@12.3.4':
+    optional: true
+
+  '@pnpm/exe.linux-x64-musl@12.3.4':
+    optional: true
+
+  '@pnpm/exe.linux-x64@12.3.4':
+    optional: true
+
+  '@pnpm/exe.win32-arm64@12.3.4':
+    optional: true
+
+  '@pnpm/exe.win32-x64@12.3.4':
+    optional: true
+
+  pnpm@12.3.4:
+    optionalDependencies:
+      '@pnpm/exe.darwin-arm64': 12.3.4
+      '@pnpm/exe.darwin-x64': 12.3.4
+      '@pnpm/exe.linux-arm64': 12.3.4
+      '@pnpm/exe.linux-arm64-musl': 12.3.4
+      '@pnpm/exe.linux-x64': 12.3.4
+      '@pnpm/exe.linux-x64-musl': 12.3.4
+      '@pnpm/exe.win32-arm64': 12.3.4
+      '@pnpm/exe.win32-x64': 12.3.4
+
+---
 lockfileVersion: '9.0'
 
 settings:
@@ -20,6 +121,9 @@ importers:
       '@hono/zod-validator':
         specifier: ^0.9.1
         version: 0.9.1(hono@4.13.8)(zod@4.6.5)
+      '@stripe/cli':
+        specifier: ^1.50.11
+        version: 1.50.11
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2
@@ -36,9 +140,6 @@ importers:
       '@types/node':
         specifier: ^24.13.5
         version: 24.13.5
-      i:
-        specifier: ^0.3.7
-        version: 0.3.7
       tsx:
         specifier: ^4.23.13
         version: 4.23.13
@@ -216,6 +317,36 @@ packages:
       hono: '>=4.13.7'
       zod: ^3.25.0 || ^4.0.0
 
+  '@stripe/cli-darwin-arm64@1.50.11':
+    resolution: {integrity: sha512-Tr5mEp4usL0SER4SUXD6IHp56PILcU5gRGFDDKiPKV6dSdSvNqYHlCVis2uDfmzKoJrrsHWiRs9nUP0migO2Hw==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@stripe/cli-darwin-x64@1.50.11':
+    resolution: {integrity: sha512-z347L5iWvEH6azilin4Duidv0T8QSy8jQEm6uJRCut++U5rA14TBYTBB+kgs6PgabsyirrsQFq04zNy8glsZ2g==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@stripe/cli-linux-arm64@1.50.11':
+    resolution: {integrity: sha512-z2DyINEhJP5naywzNiUNiLk3zJOQIcnmoIr7Sl8RO9L9um/+RNNluT4rJelbSpNKUPC2IKuSp7smJbgapOrCKw==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@stripe/cli-linux-x64@1.50.11':
+    resolution: {integrity: sha512-Q7c0ci0RY+QdJPZH0fhB9RTOFWxPlRwc2/FSzy5REKEBBUUJ5XLTRrPc9BvPdX/AApSVXi09ge0wuxoiHvMEzA==}
+    cpu: [x64]
+    os: [linux]
+
+  '@stripe/cli-win32-x64@1.50.11':
+    resolution: {integrity: sha512-WfQTJWD7I8udkW24VtUYeMpQXruLc+6nThY12n7/vA2SNjGTIuXGNkueQfGFDIHUDM7lFGeH39DxUvpUx8Jezw==}
+    cpu: [x64]
+    os: [win32]
+
+  '@stripe/cli@1.50.11':
+    resolution: {integrity: sha512-R79j5iEDs2YA41y8oaKjpiPR+6u42ONLuoTkrbjg4Nqj+1WKI4qaz6BYPipI1fJFr2DLGPMeSX4539cpBuEAow==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+
   '@types/node@24.13.5':
     resolution: {integrity: sha512-TXyindR+lBr22aJIdMQzCFHPHR6cR4js838mRDCSz5hOKWZvZwsXSSiXDmjRj4iJmgl+sR9O+1mkoVBSMadNug==}
 
@@ -236,10 +367,6 @@ packages:
   hono@4.13.8:
     resolution: {integrity: sha512-/Gng7NfoykZl2pjukW5Z6+8Yxm3BPRf86GTbQnt0SbySkvax4fyL4H3HhY1cCpBGmiW9XDRFzRV+CXK2W8QudQ==}
     engines: {node: '>=16.9.0'}
-
-  i@0.3.7:
-    resolution: {integrity: sha512-FYz4wlXgkQwIPqhzC5TdNMLSE5+GS1IIDJZY/1ZiEPCT2S3COUVZeT5OW4BmW4r5LHLQuOosSwsvnroG9GR59Q==}
-    engines: {node: '>=0.4'}
 
   stripe@22.6.2:
     resolution: {integrity: sha512-PwRE2scocvXqDKPiskMa5vRJEAEkq46W69XyUYmAwrNSLr675lQnfqLwnsndAWizwgihOWw/irLmoFRo3ez7ew==}
@@ -355,6 +482,29 @@ snapshots:
       hono: 4.13.8
       zod: 4.6.5
 
+  '@stripe/cli-darwin-arm64@1.50.11':
+    optional: true
+
+  '@stripe/cli-darwin-x64@1.50.11':
+    optional: true
+
+  '@stripe/cli-linux-arm64@1.50.11':
+    optional: true
+
+  '@stripe/cli-linux-x64@1.50.11':
+    optional: true
+
+  '@stripe/cli-win32-x64@1.50.11':
+    optional: true
+
+  '@stripe/cli@1.50.11':
+    optionalDependencies:
+      '@stripe/cli-darwin-arm64': 1.50.11
+      '@stripe/cli-darwin-x64': 1.50.11
+      '@stripe/cli-linux-arm64': 1.50.11
+      '@stripe/cli-linux-x64': 1.50.11
+      '@stripe/cli-win32-x64': 1.50.11
+
   '@types/node@24.13.5':
     dependencies:
       undici-types: 8.10.2
@@ -394,8 +544,6 @@ snapshots:
     optional: true
 
   hono@4.13.8: {}
-
-  i@0.3.7: {}
 
   stripe@22.6.2(@types/node@24.13.5):
     optionalDependencies:

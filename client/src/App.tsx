@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
 import { Store } from "./pages/Store";
 import { About } from "./pages/About";
 import { Navbar } from "./components/Navbar";
+import { Home } from "./pages/Home";
 import { ShoppingCartProvider } from "./context/ShoppingCartProvider";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Footer } from "./components/Footer";

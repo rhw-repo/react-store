@@ -2,11 +2,12 @@ import { useEffect, useRef } from "react";
 import { useShoppingCart } from "../hooks/useShoppingCart";
 import { CartItem } from "./CartItem";
 import { formatCurrency } from "../utilities/formatCurrency";
-import storeItems from "../data/items.json";
+import { useStoreItems } from "../hooks/useStoreItems";
 import Button from "./Button";
 
 export const ShoppingCart = () => {
   const { isOpen, closeCart, cartItems } = useShoppingCart();
+  const { data: storeItems = [] } = useStoreItems();
 
   const dialogRef = useRef<HTMLDialogElement>(null);
 

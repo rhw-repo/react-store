@@ -1,5 +1,5 @@
 import { useShoppingCart } from "../hooks/useShoppingCart";
-import storeItems from "../data/items.json";
+import { useStoreItems } from "../hooks/useStoreItems";
 import { formatCurrency } from "../utilities/formatCurrency";
 import Button from "./Button";
 
@@ -11,6 +11,7 @@ type CartItemProps = {
 export const CartItem = ({ id, quantity }: CartItemProps) => {
   const { increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
     useShoppingCart();
+  const { data: storeItems = [] } = useStoreItems();
 
   const item = storeItems.find((i) => i.id === id);
   if (item == null) return null;
