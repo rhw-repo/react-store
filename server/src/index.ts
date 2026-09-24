@@ -88,6 +88,8 @@ app.post(
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
+      // Cards only: they confirm instantly, which /order-confirmation relies on
+      payment_method_types: ["card"],
       customer: customerId,
       line_items: lineItems,
       metadata: {
