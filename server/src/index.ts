@@ -4,8 +4,8 @@ import cors from "cors";
 import helmet from "helmet";
 import { getItem, getItems, getUser, setStripeCustomerId } from "./db.js";
 import Stripe from "stripe";
-import { checkoutBody, type CheckoutBody } from "./schemas/checkout.js";
-import { validateBody } from "./middleware/validate.js";
+import { checkoutBody, successQuery, type CheckoutBody } from "./schemas/checkout.js";
+import { validateBody, validateQuery } from "./middleware/validate.js";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
@@ -93,7 +93,8 @@ app.post(
       metadata: {
         userId: user.id,
       },
-      success_url: `${clientUrl}/checkout/success`,
+      // Stripe replaces {CHECKOUT_SESSION_ID} with the real id when redirecting
+      success_url: `${clientUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${clientUrl}/store`,
     });
 
@@ -103,8 +104,51 @@ app.post(
   },
 );
 
+// Order summary for the Thank-you page. Read-only: asks Stripe for the session
+// and returns a summary only if it has been paid.
+app.get(
+  "/order-confirmation",
+  validateQuery(successQuery),
+  async (req, res) => {
+    const sessionId = req.query.sessionId as string;
+
+    let session;
+    try {
+      session = await stripe.checkout.sessions.retrieve(sessionId);
+    } catch {
+      res.status(404).json({ error: "Order not found" });
+      return;
+    }
+
+    if (session.payment_status !== "paid") {
+      res.status(404).json({ error: "Order not found" });
+      return;
+    }
+
+    const lineItems = await stripe.checkout.sessions.listLineItems(sessionId, {
+      limit: 100,
+    });
+
+    // Stripe amounts are in cents; the client works in euros
+    const items = [];
+    for (const lineItem of lineItems.data) {
+      items.push({
+        name: lineItem.description,
+        quantity: lineItem.quantity,
+        total: lineItem.amount_total / 100,
+      });
+    }
+
+    res.json({
+      orderNumber: sessionId.slice(-8).toUpperCase(),
+      items,
+      total: (session.amount_total ?? 0) / 100,
+    });
+  },
+);
+
 /* STRIPE WEBHOOKS: future stretch feature, off until a security review.
-   Needs the successQuery / validateQuery imports and STRIPE_WEBHOOK_SECRET.
+   Needs STRIPE_WEBHOOK_SECRET.
 
 // Authenticate and authorise a valid purchase event
 // express.raw keeps the exact bytes Stripe sent: its signature check fails on a parsed body
