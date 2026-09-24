@@ -2,15 +2,23 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-//import user from "./data/user.json" with { type: "json" };
-import { /*getItem,*/ getItems } from "./db.js";
-//import Stripe from "stripe";
-//import { checkoutBody, successQuery, type CheckoutBody } from "./schemas/checkout.js";
-//import { validateBody, validateQuery } from "./middleware/validate.js";
+import { getItem, getItems, getUser, setStripeCustomerId } from "./db.js";
+import Stripe from "stripe";
+import { checkoutBody, type CheckoutBody } from "./schemas/checkout.js";
+import { validateBody } from "./middleware/validate.js";
 
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-//   apiVersion: "2026-08-26.dahlia",
-// });
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeSecretKey) {
+  throw new Error("STRIPE_SECRET_KEY is not set in server/.env");
+}
+// Test mode only: this demo must never be able to charge a real card
+if (!stripeSecretKey.startsWith("sk_test_")) {
+  throw new Error("STRIPE_SECRET_KEY must be a test-mode key (sk_test_...)");
+}
+
+const stripe = new Stripe(stripeSecretKey, {
+  apiVersion: "2026-08-26.dahlia",
+});
 
 const handledSessions = new Set<string>();
 
@@ -29,9 +37,6 @@ app.use(cors({ origin: clientUrl }));
 app.get("/items", async (_req, res) => {
   res.json(await getItems());
 });
-
-/* STRIPE: disabled while checking the client can reach the server.
-   Re-enable together with the commented-out imports and Stripe client at the top of the file.
 
 // Create the checkout sesion for the whole cart. The client sends only ids and
 // quantities; prices always come from the database.
@@ -62,20 +67,23 @@ app.post(
       });
     }
 
+    // The demo user is always signed in until real login exists
+    const user = await getUser("user_123");
+    if (user == null) {
+      res.status(500).json({ error: "User not found" });
+      return;
+    }
+
+    // Create the Stripe customer on the user's first checkout, then reuse it
     let customerId = user.stripeCustomerId;
-    if (customerId == null) {
-      // If no stripeCustomerId then create a new one
+    if (!customerId) {
       const customer = await stripe.customers.create({
         name: user.name,
         email: user.email,
-        // metadata is custom data can set to anything useful to you
-        // example: linking stripeCustomerId to your customer id in DB etc
-        metadata: {
-          userID: user.id,
-        },
+        metadata: { userId: user.id },
       });
       customerId = customer.id;
-      // Save customer ID to the user in the DB here if you have one
+      await setStripeCustomerId(user.id, customerId);
     }
 
     const session = await stripe.checkout.sessions.create({
@@ -85,11 +93,8 @@ app.post(
       metadata: {
         userId: user.id,
       },
-      success_url:
-        // Stripe replaces CHECKOUT_SESSION_ID with real checkout session id which contains ALL of the session info
-        // metadata, item, price, quantity, user, everything will be provided and passed to purchase/sucess redirect
-        "http://localhost:4000/purchase/success?sessionId={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:5173/",
+      success_url: `${clientUrl}/checkout/success`,
+      cancel_url: `${clientUrl}/store`,
     });
 
     if (session.url == null) throw new Error("Session URL is null");
@@ -97,6 +102,9 @@ app.post(
     res.json({ url: session.url });
   },
 );
+
+/* STRIPE WEBHOOKS: future stretch feature, off until a security review.
+   Needs the successQuery / validateQuery imports and STRIPE_WEBHOOK_SECRET.
 
 // Authenticate and authorise a valid purchase event
 // express.raw keeps the exact bytes Stripe sent: its signature check fails on a parsed body

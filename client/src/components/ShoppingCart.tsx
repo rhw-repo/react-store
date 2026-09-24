@@ -3,11 +3,13 @@ import { useShoppingCart } from "../hooks/useShoppingCart";
 import { CartItem } from "./CartItem";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { useStoreItems } from "../hooks/useStoreItems";
+import { useCheckout } from "../hooks/useCheckout";
 import Button from "./Button";
 
 export const ShoppingCart = () => {
   const { isOpen, closeCart, cartItems } = useShoppingCart();
   const { data: storeItems = [] } = useStoreItems();
+  const checkout = useCheckout();
 
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -18,6 +20,10 @@ export const ShoppingCart = () => {
     if (isOpen && !dialog.open) dialog.showModal();
     if (!isOpen && dialog.open) dialog.close();
   }, [isOpen]);
+
+  function handleCheckout() {
+    checkout.mutate(cartItems);
+  }
 
   return (
     <dialog
@@ -71,7 +77,17 @@ export const ShoppingCart = () => {
             </p>
           </div>
           <footer className="px-6 py-4 border-t">
-            <Button variant="default" dataKey="checkout" />
+            <Button
+              variant="default"
+              dataKey="checkout"
+              onClick={handleCheckout}
+              disabled={cartItems.length === 0 || checkout.isPending}
+            />
+            {checkout.isError && (
+              <p role="alert" className="mt-2 text-sm text-rose-700">
+                Checkout failed. Please try again.
+              </p>
+            )}
           </footer>
         </div>
       </div>
