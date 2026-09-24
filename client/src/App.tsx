@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Store } from "./pages/Store";
 import { About } from "./pages/About";
+import { CheckoutSuccess } from "./pages/CheckoutSuccess";
 import { Navbar } from "./components/Navbar";
 import { Home } from "./pages/Home";
 import { ShoppingCartProvider } from "./context/ShoppingCartProvider";
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/store" element={<Store />} />
               <Route path="/about" element={<About />} />
+              <Route path="/checkout/success" element={<CheckoutSuccess />} />
               <Route
                 path="*"
                 element={

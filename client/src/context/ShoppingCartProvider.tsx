@@ -89,12 +89,15 @@ export const ShoppingCartProvider = ({
     [setCartItems]
   );
 
+  const clearCart = useCallback(() => setCartItems([]), [setCartItems]);
+
   const value = useMemo(
     () => ({
       getItemQuantity,
       increaseCartQuantity,
       decreaseCartQuantity,
       removeFromCart,
+      clearCart,
       openCart,
       closeCart,
       cartItems,
@@ -106,6 +109,7 @@ export const ShoppingCartProvider = ({
       increaseCartQuantity,
       decreaseCartQuantity,
       removeFromCart,
+      clearCart,
       openCart,
       closeCart,
       cartItems,
