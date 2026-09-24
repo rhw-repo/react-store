@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-Two independent packages, `client/` (React) and `server/` (Hono API). No root `package.json`: run commands inside each folder.
+Two independent packages, `client/` (React) and `server/` (Express API). No root `package.json`: run commands inside each folder.
 
 ```bash
 # client/
@@ -67,21 +67,24 @@ A demo store that uses Stripe's sandbox (test mode) to demonstrate a payment scr
 
 ## The `server/` package
 
-- Hono on Node 24, port 4000. Entry point: [server/src/index.ts](server/src/index.ts). Keep `@types/node` at `^24`.
+- Express 5 on Node 24, port 4000. Entry point: [server/src/index.ts](server/src/index.ts). Keep `@types/node` at `^24`.
+- `helmet()` sets security headers on every response. Keep it first.
 - Configuration comes from `server/.env` (gitignored), loaded by `dotenv`. Start the server from `server/`, and restart it after editing `.env`.
-- Environment variables: `MONGODB_URI`, `CLIENT_URL`, `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET`. `CLIENT_URL` is the only origin CORS allows and must match the client's origin exactly.
+- Environment variables: `MONGODB_URI`, `CLIENT_URL`, `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET`. `CLIENT_URL` is the only origin CORS allows and must match the client's origin exactly. The server refuses to start without it; never remove that check, because `cors()` with no origin allows every site.
+- Request validation: zod schemas go in `src/schemas/`, and routes check them with `validateBody()` / `validateQuery()` from [middleware/validate.ts](server/src/middleware/validate.ts).
+- Parse JSON per route with `express.json()`, never app-wide: the Stripe webhook needs the raw body.
 - [db.ts](server/src/db.ts) uses the official `mongodb` driver. It connects when imported and stops with an error if `MONGODB_URI` is missing.
 - The `items` collection has a unique index on `id` and is seeded from `data/items.json` only when empty; after that the database is the source of truth. `getItems()` and `getItem()` are async and leave out `_id`.
 - Prices are stored in euros. Convert with `Math.round(price * 100)` for Stripe.
 - [data/user.json](server/src/data/user.json) is a mock user.
 - The server tsconfig is strict but doesn't flag unused variables, and there's no lint.
 
-**Stripe is switched off.** Its code is commented out: the block marked `STRIPE:`, plus the import and client at the top of `index.ts`. When re-enabling it:
-- `await getItem(id)`, because it's async now.
-- Return `{ url }` as JSON instead of redirecting; the client navigates itself.
-- `fulfillPayment` must read each line item's `productId`, not the session's metadata.
-- `addOwnedProduct` doesn't exist yet. Orders are to be stored in MongoDB.
-- Forward webhooks locally with `pnpm exec stripe listen`.
+**Stripe is switched off.** Its code is commented out: the block marked `STRIPE:`, plus the commented-out imports and client at the top of `index.ts`.
+- Scope: Checkout in test mode only. Cart → `POST /create-checkout-session` → Stripe's hosted payment page → client Thank-you page (`success_url`) or back to the store (`cancel_url`).
+- Use a test-mode secret key (`sk_test_…`) in every environment, including deployed.
+- Replace the hard-coded `localhost` in `success_url` and `cancel_url`.
+
+**Webhooks are a future stretch feature,** not part of checkout. Leave `/webhooks/stripe`, `/purchase/success` and `fulfillPayment` commented out. Recording orders needs them, and they need a security review before going public.
 
 ## Conventions
 

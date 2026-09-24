@@ -1,12 +1,12 @@
 import "dotenv/config";
-import { serve } from "@hono/node-server";
-import { Hono } from "hono";
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
 //import user from "./data/user.json" with { type: "json" };
 import { /*getItem,*/ getItems } from "./db.js";
-import { cors } from "hono/cors";
 //import Stripe from "stripe";
-//import { zValidator } from "@hono/zod-validator";
-//import z from "zod";
+//import { checkoutBody, successQuery, type CheckoutBody } from "./schemas/checkout.js";
+//import { validateBody, validateQuery } from "./middleware/validate.js";
 
 // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 //   apiVersion: "2026-08-26.dahlia",
@@ -14,41 +14,40 @@ import { cors } from "hono/cors";
 
 const handledSessions = new Set<string>();
 
-const app = new Hono();
+const app = express();
+app.disable("x-powered-by");
+app.use(helmet());
 
-//const port = process.env.PORT;
+// Without this check a missing CLIENT_URL would make cors() allow every origin
+const clientUrl = process.env.CLIENT_URL;
+if (!clientUrl) {
+  throw new Error("CLIENT_URL is not set in server/.env");
+}
 
-app.use("*", cors({ origin: process.env.CLIENT_URL! }));
+app.use(cors({ origin: clientUrl }));
 
-app.get("/items", async (c) => c.json(await getItems()));
+app.get("/items", async (_req, res) => {
+  res.json(await getItems());
+});
 
 /* STRIPE: disabled while checking the client can reach the server.
-   Re-enable together with the Stripe import and client at the top of the file.
-
-const checkoutBody = z.object({
-  items: z
-    .array(
-      z.object({
-        id: z.number().int(),
-        quantity: z.number().int().positive(),
-      }),
-    )
-    .nonempty(),
-});
+   Re-enable together with the commented-out imports and Stripe client at the top of the file.
 
 // Create the checkout sesion for the whole cart. The client sends only ids and
 // quantities; prices always come from the database.
 app.post(
   "/create-checkout-session",
-  zValidator("json", checkoutBody),
-  async (c) => {
-    const { items } = c.req.valid("json");
+  express.json(),
+  validateBody(checkoutBody),
+  async (req, res) => {
+    const { items } = req.body as CheckoutBody;
 
     const lineItems = [];
     for (const { id, quantity } of items) {
-      const product = getItem(id);
+      const product = await getItem(id);
       if (product == null) {
-        return c.json({ error: `Unknown item ${id}` }, 400);
+        res.status(400).json({ error: `Unknown item ${id}` });
+        return;
       }
       lineItems.push({
         price_data: {
@@ -95,57 +94,64 @@ app.post(
 
     if (session.url == null) throw new Error("Session URL is null");
 
-    return c.redirect(session.url);
+    res.json({ url: session.url });
   },
 );
 
 // Authenticate and authorise a valid purchase event
-app.post("/webhooks/stripe", async (c) => {
-  const signature = c.req.header("stripe-signature");
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
-  if (signature == null || secret == null) {
-    return c.text("Error", 400);
-  }
+// express.raw keeps the exact bytes Stripe sent: its signature check fails on a parsed body
+app.post(
+  "/webhooks/stripe",
+  express.raw({ type: "application/json" }),
+  async (req, res) => {
+    const signature = req.headers["stripe-signature"];
+    const secret = process.env.STRIPE_WEBHOOK_SECRET;
+    if (typeof signature !== "string" || !secret) {
+      res.sendStatus(400);
+      return;
+    }
 
-  // pass sessionId to fulfillPayment by destructuring it from event.data.object.id
-  try {
-    const event = stripe.webhooks.constructEvent(
-      await c.req.raw.text(),
-      signature,
-      secret,
-    );
+    let event;
+    try {
+      event = stripe.webhooks.constructEvent(req.body, signature, secret);
+    } catch (err) {
+      console.log("Webhook signature verification failed.", (err as Error).message);
+      res.sendStatus(400);
+      return;
+    }
+
     switch (event.type) {
       case "checkout.session.completed":
       case "checkout.session.async_payment_succeeded": {
         const success = await fulfillPayment(event.data.object.id);
-        if (!success) return c.text("Error", 400);
+        if (!success) {
+          res.sendStatus(400);
+          return;
+        }
         break;
       }
+      default:
+        console.log(`Unhandled event type ${event.type}.`);
     }
 
-    return c.text("Success", 200);
-  } catch (err) {
-    return c.text("Error", 400);
-  }
-});
+    res.sendStatus(200);
+  },
+);
 
 // Send user to home page AFTER all server side logic completed
-// zValidator checks sessionId is string for additional type saftey
+// validateQuery checks sessionId is a string before the handler runs
 app.get(
   "/purchase/success",
-  zValidator(
-    "query",
-    z.object({
-      sessionId: z.string(),
-    }),
-  ),
-  async (c) => {
-    const { sessionId } = c.req.query();
-    if (sessionId == null) return c.text("Error", 400);
+  validateQuery(successQuery),
+  async (req, res) => {
+    const sessionId = req.query.sessionId as string;
 
     const success = await fulfillPayment(sessionId);
-    if (!success) return c.text("Error", 400);
-    return c.redirect("http://localhost:5173");
+    if (!success) {
+      res.sendStatus(400);
+      return;
+    }
+    res.redirect(clientUrl);
   },
 );
 
@@ -183,6 +189,8 @@ async function fulfillPayment(sessionId: string) {
 }
 */
 
-serve({ fetch: app.fetch, port: 4000 }, (info) => {
-  console.log(`Server running on http://localhost:${info.port}`);
+const port = 4000;
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
