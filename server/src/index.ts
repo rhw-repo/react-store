@@ -4,14 +4,18 @@ import cors from "cors";
 import helmet from "helmet";
 import { getItem, getItems, getUser, setStripeCustomerId } from "./db.js";
 import Stripe from "stripe";
-import { checkoutBody, successQuery, type CheckoutBody } from "./schemas/checkout.js";
+import {
+  checkoutBody,
+  successQuery,
+  type CheckoutBody,
+} from "./schemas/checkout.js";
 import { validateBody, validateQuery } from "./middleware/validate.js";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
   throw new Error("STRIPE_SECRET_KEY is not set in server/.env");
 }
-// Test mode only: this demo must never be able to charge a real card
+
 if (!stripeSecretKey.startsWith("sk_test_")) {
   throw new Error("STRIPE_SECRET_KEY must be a test-mode key (sk_test_...)");
 }
