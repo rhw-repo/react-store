@@ -1,15 +1,27 @@
 {
+  "name": "server",
+  "type": "module",
+  "packageManager": "pnpm@12.3.4",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
   "dependencies": {
-    "@hono/node-server": "^2.1.1",
-    "@hono/zod-validator": "^0.9.1",
+    "@stripe/cli": "^1.50.11",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "hono": "^4.13.8",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "mongodb": "^7.6.0",
     "stripe": "^22.6.2",
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^24.13.5",
     "tsx": "^4.23.13",
-    "typescript": "^7.0.2"
+    "typescript": "^6.0.3"
   }
 }
