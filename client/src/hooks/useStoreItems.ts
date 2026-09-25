@@ -11,7 +11,7 @@ export function useStoreItems() {
   return useQuery({
     queryKey: ["items"],
     queryFn: async (): Promise<StoreItem[]> => {
-      const res = await fetch("http://localhost:4000/items");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/items`);
       if (!res.ok) throw new Error(`GET /items failed: ${res.status}`);
       return res.json();
     },

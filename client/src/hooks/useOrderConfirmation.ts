@@ -11,7 +11,7 @@ export function useOrderConfirmation(sessionId: string | null) {
     queryKey: ["order-confirmation", sessionId],
     queryFn: async (): Promise<OrderConfirmation> => {
       const res = await fetch(
-        `http://localhost:4000/order-confirmation?sessionId=${encodeURIComponent(sessionId ?? "")}`,
+        `${import.meta.env.VITE_API_URL}/order-confirmation?sessionId=${encodeURIComponent(sessionId ?? "")}`,
       );
       if (!res.ok) {
         throw new Error(`GET /order-confirmation failed: ${res.status}`);

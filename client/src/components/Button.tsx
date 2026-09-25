@@ -15,7 +15,7 @@ const buttonStyles = tv({
     variant: {
       default:
         "w-full bg-teal-700 text-neutral-100 hover:bg-teal-800 px-4 py-2 shadow-md shadow-teal-950/40 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
-      blankPages:
+      pageTemplate:
         "w-full bg-teal-700 text-neutral-100 hover:bg-teal-800 px-4 py-2 landscape:text-sm rounded cursor-pointer mb-4 shadow-md shadow-teal-950/50 hover:shadow-lg hover:shadow-teal-950/50 active:shadow-sm",
       increment:
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-teal-800 rounded-sm transition-colors",

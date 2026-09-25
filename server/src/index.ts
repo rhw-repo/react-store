@@ -101,7 +101,7 @@ app.post(
       },
       // Stripe replaces {CHECKOUT_SESSION_ID} with the real id when redirecting
       success_url: `${clientUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${clientUrl}/store`,
+      cancel_url: `${clientUrl}/checkout/cancel?session_id={CHECKOUT_SESSION_ID}`,
     });
 
     if (session.url == null) throw new Error("Session URL is null");
@@ -150,6 +150,31 @@ app.get(
       items,
       total: (session.amount_total ?? 0) / 100,
     });
+  },
+);
+
+// Checks the Cancelled page was reached from a real, unpaid Stripe session
+app.get(
+  "/checkout-cancelled",
+  validateQuery(successQuery),
+  async (req, res) => {
+    const sessionId = req.query.sessionId as string;
+
+    let session;
+    try {
+      session = await stripe.checkout.sessions.retrieve(sessionId);
+    } catch {
+      res.sendStatus(404);
+      return;
+    }
+
+    // Only an unpaid session is a cancelled checkout
+    if (session.payment_status !== "unpaid") {
+      res.sendStatus(404);
+      return;
+    }
+
+    res.sendStatus(200);
   },
 );
 
