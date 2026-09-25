@@ -1,17 +1,13 @@
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useShoppingCart } from "../hooks/useShoppingCart";
 import { useOrderConfirmation } from "../hooks/useOrderConfirmation";
 import { formatCurrency } from "../utilities/formatCurrency";
-import Button from "../components/Button";
-
-const cardClasses =
-  "flex flex-col gap-4 w-full max-w-md m-4 p-8 bg-stone-100 rounded-sm shadow-xl shadow-stone-900/15";
+import PageTemplate from "../components/PageTemplate";
 
 // Stripe redirects here after a successful test payment
 export const CheckoutSuccess: React.FC = () => {
   const { clearCart } = useShoppingCart();
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const { data: order, isPending, isError } = useOrderConfirmation(sessionId);
@@ -23,21 +19,12 @@ export const CheckoutSuccess: React.FC = () => {
     }
   }, [order, clearCart]);
 
-  function handleGoToStore() {
-    navigate("/store");
-  }
-
   if (sessionId == null || isError) {
     return (
-      <section className={cardClasses}>
-        <h1 className="text-3xl font-bold text-stone-950 text-center">
-          Order not found
-        </h1>
-        <p className="text-base text-gray-700 text-center">
-          We couldn't find a paid order for this page.
-        </p>
-        <Button variant="default" dataKey="goToStore" onClick={handleGoToStore} />
-      </section>
+      <PageTemplate
+        heading="Order not found"
+        message="We couldn't find a paid order for this page."
+      />
     );
   }
 
@@ -46,15 +33,19 @@ export const CheckoutSuccess: React.FC = () => {
   }
 
   return (
-    <section className={cardClasses}>
-      <h1 className="text-3xl font-bold text-stone-950 text-center">Thank you!</h1>
-      <p className="text-lg text-gray-800 text-center">
-        Order <span className="font-bold">#{order.orderNumber}</span>
-      </p>
-
+    <PageTemplate
+      heading="Order confirmed"
+      subheading={`Order #${order.orderNumber}`}
+      imgSrc="/imgs/thankyou.webp"
+      imgPosition="bottom"
+      imgAlt='Towels dandling into rame next a potted palm, with the words "Thank You. Your order has been placed."'
+    >
       <ul className="flex flex-col gap-2 border-y border-stone-300 py-4">
         {order.items.map((item) => (
-          <li key={item.name} className="flex justify-between gap-4 text-gray-800">
+          <li
+            key={item.name}
+            className="flex justify-between gap-4 text-gray-800"
+          >
             <span>
               {item.quantity} × {item.name}
             </span>
@@ -76,8 +67,6 @@ export const CheckoutSuccess: React.FC = () => {
         This is a demo store: no real order has been placed, nothing will be
         delivered and no money was charged.
       </p>
-
-      <Button variant="default" dataKey="goToStore" onClick={handleGoToStore} />
-    </section>
+    </PageTemplate>
   );
 };
