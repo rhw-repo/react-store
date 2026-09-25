@@ -1,17 +1,17 @@
 [
-  { "id": 1, "name": "Grey Mouse", "price": 19.99, "imgUrl": "/imgs/grey-mouse.webp" },
-  { "id": 2, "name": "Orange Mouse", "price": 17.99, "imgUrl": "/imgs/orange-mouse.webp" },
-  { "id": 3, "name": "White Mouse", "price": 18.49, "imgUrl": "/imgs/white-mouse.webp" },
-  { "id": 4, "name": "Black / Red Mouse", "price": 21.99, "imgUrl": "/imgs/black-red-mouse.webp" },
+  { "id": 1, "name": "Natural Mascara with Essential Oils", "price": 17.99, "imgUrl": "/imgs/mascara.webp" },
+  { "id": 2, "name": "Unbleached Cotton Tote Bag", "price": 21.99, "imgUrl": "/imgs/bag.webp" },
+  { "id": 3, "name": "Unbleached Towel Set", "price": 64.99, "imgUrl": "/imgs/beige_towels.webp" },
+  { "id": 4, "name": "Gift Set Autumn Glow", "price": 57.99, "imgUrl": "/imgs/brown_set.webp" },
 
-  { "id": 5, "name": "RGB Lights Keyboard", "price": 49.99, "imgUrl": "/imgs/rgb-light-keyboard.webp" },
-  { "id": 6, "name": "White Keyboard", "price": 39.99, "imgUrl": "/imgs/white-keyboard.webp" },
-  { "id": 7, "name": "Black Keyboard", "price": 44.5, "imgUrl": "/imgs/black-keyboard.webp" },
-  { "id": 8, "name": "Ergonomic Keyboard 40", "price": 89.99, "imgUrl": "/imgs/ergonomic-keyboard-40.webp" },
+  { "id": 5, "name": "Gift Set Serum & Dusting Powder", "price": 71.99, "imgUrl": "/imgs/larger_brown_set.webp" },
+  { "id": 6, "name": "Natural Essential Oil Candle Hand Poured", "price": 11.99, "imgUrl": "/imgs/candle.webp" },
+  { "id": 7, "name": "Gift Set Natural Essential Oil Candles Hand Poured", "price": 32.99, "imgUrl": "/imgs/candle_set.webp" },
+  { "id": 8, "name": "Natural Exfoliating Body Dry Brush", "price": 25.99, "imgUrl": "/imgs/exfoliating_brush.webp" },
 
-  { "id": 9, "name": "Headphones", "price": 29.99, "imgUrl": "/imgs/headphones.webp" },
-  { "id": 10, "name": "Wired Headphones", "price": 19.99, "imgUrl": "/imgs/wired-headphones.webp" },
+  { "id": 9, "name": "Unbleached Natural Sponge", "price": 15.99, "imgUrl": "/imgs/sponge.webp" },
+  { "id": 10, "name": "Seaweed Infused Water Cream", "price": 47.99, "imgUrl": "/imgs/single_jar.webp" },
 
-  { "id": 11, "name": "Multi USB-C Hub", "price": 24.99, "imgUrl": "/imgs/multi-wire-c-usb-hub.webp" },
-  { "id": 12, "name": "Anker USB-C Hub", "price": 22.49, "imgUrl": "/imgs/no-wire-c-usb-hub.webp" }
+  { "id": 11, "name": "Natural Soap Bars with Ylang Ylang & Cedarwood", "price": 23.49, "imgUrl": "/imgs/soap.webp" },
+  { "id": 12, "name": "Natural Toothbrush with Bamboo & Horsehair", "price": 9.49, "imgUrl": "/imgs/toothbrush.webp" }
 ]

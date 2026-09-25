@@ -37,7 +37,7 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
         </h5>
       </div>
 
-      <div>
+      <div className="mt-auto">
         {quantity === 0 ? (
           <Button
             variant="default"
