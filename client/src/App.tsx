@@ -2,11 +2,12 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { Store } from "./pages/Store";
 import { About } from "./pages/About";
 import { CheckoutSuccess } from "./pages/CheckoutSuccess";
+import { CheckoutCancelled } from "./pages/CheckoutCancelled";
+import { NotFound } from "./pages/NotFound";
 import { Navbar } from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartProvider";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Footer } from "./components/Footer";
-import PageTemplate from "./components/PageTemplate";
 
 function App() {
   return (
@@ -19,17 +20,9 @@ function App() {
               <Route path="/store" element={<Store />} />
               <Route path="/about" element={<About />} />
               <Route path="/checkout/success" element={<CheckoutSuccess />} />
+              <Route path="/checkout/cancel" element={<CheckoutCancelled />} />
               <Route path="/" element={<Navigate to="/store" replace />} />
-              <Route
-                path="*"
-                element={
-                  <PageTemplate
-                    heading="404 Page Not Found"
-                    subheading="That address doesn't match any page."
-                    message="Please visit the Store page."
-                  />
-                }
-              />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />

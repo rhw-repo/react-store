@@ -4,6 +4,7 @@ import { useShoppingCart } from "../hooks/useShoppingCart";
 import { useOrderConfirmation } from "../hooks/useOrderConfirmation";
 import { formatCurrency } from "../utilities/formatCurrency";
 import PageTemplate from "../components/PageTemplate";
+import { NotFound } from "./NotFound";
 
 // Stripe redirects here after a successful test payment
 export const CheckoutSuccess: React.FC = () => {
@@ -20,12 +21,7 @@ export const CheckoutSuccess: React.FC = () => {
   }, [order, clearCart]);
 
   if (sessionId == null || isError) {
-    return (
-      <PageTemplate
-        heading="Order not found"
-        message="We couldn't find a paid order for this page."
-      />
-    );
+    return <NotFound />;
   }
 
   if (isPending) {
