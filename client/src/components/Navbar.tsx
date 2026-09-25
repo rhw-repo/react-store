@@ -9,12 +9,6 @@ export const Navbar = () => {
       <div className="flex justify-between px-8 gap-1 p-4 lg:max-w-content lg:mx-auto">
         <div className="flex justify-start">
           <NavLink
-            to="/"
-            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-ink hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950"
-          >
-            Home
-          </NavLink>
-          <NavLink
             to="/store"
             className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-ink hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-purple-950"
           >

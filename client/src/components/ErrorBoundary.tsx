@@ -65,7 +65,7 @@ class ErrorBoundary extends Component<Props, State> {
                   below to go back.
                 </p>
                 <Button
-                  variant="blankPages"
+                  variant="pageTemplate"
                   dataKey="goToStore"
                   onClick={() => (window.location.href = "/store")}
                 />
