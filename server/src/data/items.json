@@ -1,0 +1,17 @@
+[
+  { "id": 1, "name": "Natural Mascara with Essential Oils", "price": 17.99, "imgUrl": "/imgs/mascara.webp" },
+  { "id": 2, "name": "Unbleached Cotton Tote Bag", "price": 21.99, "imgUrl": "/imgs/bag.webp" },
+  { "id": 3, "name": "Unbleached Towel", "price": 19.99, "imgUrl": "/imgs/towel.webp" },
+  { "id": 4, "name": "Gift Set Autumn Glow", "price": 57.99, "imgUrl": "/imgs/brown_gift_set.webp" },
+
+  { "id": 5, "name": "Gift Set Serum & Dusting Powder", "price": 71.99, "imgUrl": "/imgs/larger_brown_set.webp" },
+  { "id": 6, "name": "Natural Essential Oil Candle Hand Poured", "price": 11.99, "imgUrl": "/imgs/candle.webp" },
+  { "id": 7, "name": "Gift Set Natural Essential Oil Candles Hand Poured", "price": 32.99, "imgUrl": "/imgs/candle_gift_set.webp" },
+  { "id": 8, "name": "Natural Candle Hand Poured", "price": 25.99, "imgUrl": "/imgs/white_candle.webp" },
+
+  { "id": 9, "name": "Natural Lip Balm", "price": 15.99, "imgUrl": "/imgs/lip_balm_2.webp" },
+  { "id": 10, "name": "Seaweed Infused Water Cream", "price": 47.99, "imgUrl": "/imgs/single_jar.webp" },
+
+  { "id": 11, "name": "Natural Soap Bars with Ylang Ylang & Cedarwood", "price": 23.49, "imgUrl": "/imgs/soaps.webp" },
+  { "id": 12, "name": "Natural Toothbrush with Bamboo & Horsehair", "price": 9.49, "imgUrl": "/imgs/toothbrush.webp" }
+]

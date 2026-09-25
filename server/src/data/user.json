@@ -1,0 +1,6 @@
+{
+  "id": "user_123",
+  "email": "user@example.com",
+  "name": "John Doe",
+  "stripeCustomerId": ""
+}

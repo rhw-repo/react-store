@@ -24,6 +24,10 @@ dist-ssr
 *.sln
 *.sw?
 
+### SQLite ###
+*.db
+*.db-journal
+
 ### dotenv ###
 .env
 
