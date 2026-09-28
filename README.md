@@ -28,12 +28,12 @@ Currently in development.
 2. Clone your fork:
 
 ```
-git clone https://github.com/rhw-repo/react-store.git
+git clone https://github.com/<your-username>/react-store.git
 ```
 
 The project has two parts, each with its own dependencies: `client/` (React) and `server/` (Express API). There is no `package.json` at the repo root.
 
-3. Copy each example environment file and fill in the values. You'll need a MongoDB database (local or Atlas) and a Stripe test-mode secret key.
+3. Copy each example environment file and fill in the values. You'll need a MongoDB database and a Stripe secret key.
 
 ```
 cp react-store/server/.env.example react-store/server/.env
@@ -57,8 +57,6 @@ pnpm dev
 ```
 
 6. Open http://localhost:5173/store
-
-To try checkout, use Stripe's test card `4242 4242 4242 4242` with any future expiry date and any CVC. No real payment is made.
 
 ---
 
