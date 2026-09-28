@@ -15,7 +15,6 @@ export const checkoutBody = z.object({
 
 export type CheckoutBody = z.infer<typeof checkoutBody>;
 
-// The ?sessionId=... Stripe adds when redirecting to GET /purchase/success
 export const successQuery = z.object({
   sessionId: z.string(),
 });

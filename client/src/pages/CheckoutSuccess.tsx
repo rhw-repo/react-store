@@ -6,7 +6,6 @@ import { formatCurrency } from "../utilities/formatCurrency";
 import PageTemplate from "../components/PageTemplate";
 import { NotFound } from "./NotFound";
 
-// Stripe redirects here after a successful test payment
 export const CheckoutSuccess: React.FC = () => {
   const { clearCart } = useShoppingCart();
   const [searchParams] = useSearchParams();

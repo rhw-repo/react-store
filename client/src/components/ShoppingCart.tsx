@@ -66,7 +66,7 @@ export const ShoppingCart = () => {
                 <CartItem key={item.id} {...item} />
               ))}
             </div>
-            <p className="text-gray-950 text-right font-bold mt-4">
+            <p className="font-body text-gray-950 text-right font-bold mt-4">
               Total:{" "}
               {formatCurrency(
                 cartItems.reduce((total, cartItem) => {

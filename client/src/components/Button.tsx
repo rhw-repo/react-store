@@ -21,14 +21,12 @@ const buttonStyles = tv({
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-teal-800 rounded-sm transition-colors",
       decrement:
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-teal-800 rounded-sm transition-colors",
-      // Rose only here: on the minus it would signal a destruction that isn't
-      // happening. This variant only renders at a quantity of 1.
       remove:
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-rose-600 active:text-rose-900 rounded-sm transition-colors",
       removeFromOpenedCart:
         "flex justify-center items-center px-2 py-1 bg-transparent text-sm text-teal-700 hover:text-teal-800 rounded-sm transition-colors",
       closeCart:
-        "inline-flex justify-center items-center p-2 text-gray-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-blue-600 rounded hover:shadow-sm hover:shadow-gray-900/30 active:shadow-none",
+        "inline-flex justify-center items-center p-2 text-gray-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-teal-950 rounded hover:shadow-sm hover:shadow-gray-900/30 active:shadow-none",
     },
   },
 });

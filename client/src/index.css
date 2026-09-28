@@ -1,22 +1,30 @@
 @import "tailwindcss";
 @source not "../../CLAUDE.md";
 
-/* ---------------------------------------------------------------------------
-   Fonts. Self-hosted variable woff2 from public/, referenced by absolute path.
-   Declared ranges match each file's real fvar axes.
-   --------------------------------------------------------------------------- */
-
-/* Axes: wdth 75-100, wght 400-700. */
 @font-face {
-  font-family: "Instrument Sans";
-  src: url("/InstrumentSans-Variable.woff2") format("woff2");
-  font-weight: 400 700;
-  font-stretch: 75% 100%;
+  font-family: "Lato";
+  src: url("/Lato-Thin.woff2") format("woff2");
+  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 
-/* Static file, single weight. */
+@font-face {
+  font-family: "Lato";
+  src: url("/Lato-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/Lato-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "Noto-Serif";
   src: url("/NotoSerif-VariableFont_wdth,wght.woff2") format("woff2");
@@ -25,15 +33,9 @@
   font-display: swap;
 }
 
-/* ---------------------------------------------------------------------------
-   Design tokens. Each --font-* and --color-* generates matching utilities,
-   e.g. font-ui, bg-shell, text-ink.
-   --------------------------------------------------------------------------- */
 @theme {
-  /* Body copy */
   --font-body: "Noto-Serif", ui-serif, system-ui, serif;
-  /* Headings, links, button text */
-  --font-ui: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-ui: "Lato", ui-sans-serif, system-ui, sans-serif;
 
   --color-shell: oklch(97% 0.001 106.424);
   --color-ink: #1c1c1c;
@@ -43,15 +45,11 @@
 
   --shadow-bar:
     0 4px 6px -1px rgb(28 25 23 / 0.3), 0 2px 4px -2px rgb(28 25 23 / 0.3);
-  /* Negative y-offset: a bottom bar's shadow must cast upward onto the content
-     above it, or it falls off the page. No built-in utility does this. */
   --shadow-bar-inverted: 0 -6px 16px -4px rgb(28 25 23 / 0.4);
-  /* 0.3, not 0.4: the shell is stone-100, so a shadow drags it down further
-     than it did against the old saturated fill. The bar tokens stay at their
-     weights — the bars are stone-300 on a stone-100 page, and their shadow is
-     now the main thing separating them from the content. */
   --shadow-media:
     0 1px 3px 0 rgb(28 25 23 / 0.3), 0 1px 2px -1px rgb(28 25 23 / 0.3);
+
+  --text-shadow-heading: 0 1px 2px rgb(28 25 23 / 0.2);
 }
 
 @utility scrollbar-none {
@@ -74,15 +72,30 @@
     background-color: var(--color-shell);
   }
 
-  /* Buttons get font-ui from Button's tv() base instead, since they need it
-     alongside other variant classes. Components that set their own text-*
-     utility override the colour here, as Navbar's links do. */
-  p,
-  h1,
-  /*span,*/
+  p {
+    font-family: var(--font-ui);
+    font-weight: 100;
+    color: var(--color-ink);
+  }
+
+  h1 {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+  }
+
+  h2 {
+    font-family: var(--font-ui);
+    font-weight: 400;
+    color: var(--color-ink);
+    text-shadow: var(--text-shadow-heading);
+  }
+
+  h3,
+  h4,
   h5,
   h6 {
-    font-family: var(--font-body);
+    font-family: var(--font-ui);
+    font-weight: 700;
     color: var(--color-ink);
   }
 }

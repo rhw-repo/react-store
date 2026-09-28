@@ -13,9 +13,7 @@ export function useCancelledCheckout(sessionId: string | null) {
       // TanStack Query doesn't allow undefined as data
       return null;
     },
-    // Only fetch when the URL has a session id
     enabled: sessionId != null,
-    // A rejected session won't become valid by retrying
     retry: false,
   });
 }

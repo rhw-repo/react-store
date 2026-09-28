@@ -20,7 +20,6 @@ export const ShoppingCartProvider = ({
     []
   );
 
-  // reduce() method to transform this array of objects into single aggregate value (a number)
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
     0
@@ -36,8 +35,6 @@ export const ShoppingCartProvider = ({
     [cartItems]
   );
 
-  // Build new arrays by inducing functional state updates rather than directly
-  // mutating state to avoid introducing errors
   const increaseCartQuantity = useCallback(
     (id: number) => {
       setCartItems((currItems) => {
@@ -82,7 +79,6 @@ export const ShoppingCartProvider = ({
   const removeFromCart = useCallback(
     (id: number) => {
       setCartItems((currItems) => {
-        // Filter to return an array where item(s) with matching id are ommitted
         return currItems.filter((item) => item.id !== id);
       });
     },

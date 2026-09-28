@@ -1,7 +1,7 @@
 {
   "name": "server",
   "type": "module",
-  "packageManager": "pnpm@12.3.4",
+  "packageManager": "pnpm@12.6.0",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
