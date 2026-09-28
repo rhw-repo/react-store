@@ -1,25 +1,31 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useShoppingCart } from "../hooks/useShoppingCart";
 
 export const Navbar = () => {
   const { openCart, cartQuantity } = useShoppingCart();
+  const { pathname } = useLocation();
+  const isStorePage = pathname.endsWith("/store");
 
   return (
     <nav className="font-body sticky top-0 z-30 bg-stone-50 shadow-bar w-full">
       <div className="flex justify-evenly sm:grid sm:grid-cols-[1fr_auto_1fr] items-center gap-1 py-4 px-4 sm:px-8 lg:max-w-content lg:mx-auto">
         <div className="flex justify-start">
-          <NavLink
-            to="/store"
-            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-teal-800 hover:text-teal-950 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
-          >
-            Store
-          </NavLink>
-          <NavLink
-            to="/about"
-            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-teal-800 hover:text-teal-950 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
-          >
-            About
-          </NavLink>
+          {!isStorePage && (
+            <NavLink
+              to="/store"
+              className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-teal-800 hover:text-teal-950 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
+            >
+              Store
+            </NavLink>
+          )}
+          {isStorePage && (
+            <NavLink
+              to="/about"
+              className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-teal-800 hover:text-teal-950 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
+            >
+              About
+            </NavLink>
+          )}
         </div>
         <Link
           to="/store"
