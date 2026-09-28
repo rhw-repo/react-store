@@ -5,25 +5,25 @@ export const Navbar = () => {
   const { openCart, cartQuantity } = useShoppingCart();
 
   return (
-    <nav className="font-body sticky top-0 z-30 bg-stone-300 shadow-bar w-full">
+    <nav className="font-body sticky top-0 z-30 bg-stone-50 shadow-bar w-full">
       <div className="flex justify-evenly sm:grid sm:grid-cols-[1fr_auto_1fr] items-center gap-1 py-4 px-4 sm:px-8 lg:max-w-content lg:mx-auto">
         <div className="flex justify-start">
           <NavLink
             to="/store"
-            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-teal-800 hover:text-teal-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-teal-950"
+            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-teal-800 hover:text-teal-950 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
           >
             Store
           </NavLink>
           <NavLink
             to="/about"
-            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-teal-800 hover:text-teal-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-teal-950"
+            className="flex justify-center items-center lg:text-2xl rounded-sm py-2 px-2 text-teal-800 hover:text-teal-950 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
           >
             About
           </NavLink>
         </div>
         <Link
           to="/store"
-          className="flex justify-center items-center text-base sm:text-lg lg:text-3xl font-bold rounded-sm py-2 px-2 text-teal-800 hover:text-teal-900 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:text-teal-950"
+          className="flex justify-center items-center text-base sm:text-lg lg:text-3xl font-bold rounded-sm py-2 px-2 text-teal-800 hover:text-teal-900 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
         >
           Amber & Fern
         </Link>

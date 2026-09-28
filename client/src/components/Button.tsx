@@ -28,7 +28,7 @@ const buttonStyles = tv({
       removeFromOpenedCart:
         "flex justify-center items-center px-2 py-1 bg-transparent text-sm text-teal-700 hover:text-teal-800 rounded-sm transition-colors",
       closeCart:
-        "inline-flex justify-center items-center p-2 text-gray-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-blue-600 rounded hover:shadow-sm hover:shadow-gray-900/30 active:shadow-none",
+        "inline-flex justify-center items-center p-2 text-gray-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-teal-950 rounded hover:shadow-sm hover:shadow-gray-900/30 active:shadow-none",
     },
   },
 });
