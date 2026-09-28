@@ -28,7 +28,7 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
             alt makes screen readers announce it twice. */}
         <img src={imgUrl} alt="" className="w-full h-full object-cover" />
       </div>
-      <div className="flex justify-between items-baseline mb-8 mt-2">
+      <div className="flex justify-between items-baseline gap-4 mb-8 mt-2">
         <h3 className="min-h-[2lh] text-lg sm:text-xl lg:text-lg font-normal text-stone-950 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-ring-teal-950">
           {name}
         </h3>
