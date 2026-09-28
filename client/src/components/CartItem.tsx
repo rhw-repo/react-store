@@ -38,7 +38,7 @@ export const CartItem = ({ id, quantity }: CartItemProps) => {
             <p className="text-xs">{formatCurrency(item.price)}</p>
           </div>
         </div>
-        <p className="text-sm font-bold shrink-0">
+        <p className="font-body text-sm font-bold shrink-0">
           {formatCurrency(item.price * quantity)}
         </p>
       </div>

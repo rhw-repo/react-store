@@ -5,6 +5,7 @@ export type StoreItem = {
   name: string;
   price: number;
   imgUrl: string;
+  category: string;
 };
 
 export function useStoreItems() {

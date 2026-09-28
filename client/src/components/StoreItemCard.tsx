@@ -24,17 +24,17 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
   return (
     <div className="flex flex-col bg-stone-100 shadow-xl shadow-stone-900/15 hover:shadow-stone-900/20 transition-shadow p-4 rounded-sm h-full">
       <div className="aspect-3/2 w-full overflow-hidden rounded-sm shadow-media">
-        {/* alt="" deliberately: the <h4> below is the same string, so a filled
+        {/* alt="" deliberately: the <h3> below is the same string, so a filled
             alt makes screen readers announce it twice. */}
         <img src={imgUrl} alt="" className="w-full h-full object-cover" />
       </div>
       <div className="flex justify-between items-baseline mb-8 mt-2">
-        <h4 className="min-h-[2lh] text-xl sm:text-2xl md:text-2xl lg:text-xl xl:text-xl 2xl:text-xl text-stone-950 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-ring-teal-950">
+        <h3 className="min-h-[2lh] text-lg sm:text-xl lg:text-lg font-normal text-stone-950 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-ring-teal-950">
           {name}
-        </h4>
-        <h5 className="text-lg font-bold text-gray-800 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950">
+        </h3>
+        <h4 className="font-body text-lg font-bold text-gray-800 hover:text-gray-900 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950">
           {formatCurrency(price)}
-        </h5>
+        </h4>
       </div>
 
       <div className="mt-auto">

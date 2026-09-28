@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useShoppingCart } from "../hooks/useShoppingCart";
 
 export const Navbar = () => {
@@ -27,12 +27,9 @@ export const Navbar = () => {
             </NavLink>
           )}
         </div>
-        <Link
-          to="/store"
-          className="flex justify-center items-center text-base sm:text-lg lg:text-3xl font-bold rounded-sm py-2 px-2 text-teal-800 hover:text-teal-900 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
-        >
+        <h1 className="flex justify-center items-center text-base sm:text-lg lg:text-3xl font-bold py-2 px-2 text-teal-800">
           Mallow & Fern
-        </Link>
+        </h1>
         <div className="flex justify-end">
           {cartQuantity > 0 && (
             <button

@@ -7,6 +7,7 @@ export type Item = {
   name: string;
   price: number;
   imgUrl: string;
+  category: string;
 };
 
 export type User = {
