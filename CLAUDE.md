@@ -12,6 +12,7 @@ pnpm dev       # Vite, :5173
 pnpm build     # type check + bundle
 pnpm lint
 pnpm preview
+pnpm test      # Vitest, watch mode; add --run to run once
 
 # server/
 pnpm dev       # tsx watch, :4000
@@ -21,7 +22,8 @@ pnpm start
 
 - **Always `pnpm`, never `npm`.**
 - Run client and server together in development; the Store page loads products from the server.
-- No test framework. `pnpm build` is the type check. Run it bare, with no extra arguments.
+- Client tests use Vitest. Test files go in `client/src/tests/` as `*.test.ts(x)`. The server has no tests.
+- `pnpm build` is the type check. Run it bare, with no extra arguments.
 - Keep TypeScript at `~6.0` in both packages (`typescript-eslint` doesn't support 7.0). Never `pnpm add typescript@latest`.
 - Keep `CLAUDE.md` and `README.md` at the repo root; inside `client/`, Tailwind scans them and adds unused CSS.
 - Don't add `source("…")` to the Tailwind import in [client/src/index.css](client/src/index.css).
@@ -91,7 +93,7 @@ A demo store that uses Stripe's sandbox (test mode) to demonstrate a payment scr
 - **Every button goes through [Button.tsx](client/src/components/Button.tsx).** Styles come from its `tv()` variant map and the label from `getButtonText(dataKey)`; `Button` takes no children. A new button means a new `variant`, plus a `DataKey` case if the text is new. The only exception is the Navbar cart icon.
 - The `blankPages` variant styles both the error screen and the Coming Soon pages.
 - **Write class names in full.** Never build them from pieces (`` `bg-${color}-600` ``), because Tailwind can't see them and they silently disappear. Put each full class string in a variant map and select it by key.
-- Render prices with [formatCurrency](client/src/utilities/formatCurrency.ts) (EUR).
+- Render prices with [formatCurrency](client/src/utilities/formatCurrency.ts) (EUR, fixed `en-IE` locale so output is the same in every browser and test run).
 - Images go in `client/public/imgs/` and are referenced as `/imgs/name.webp`. Add a photographer credit to the README for each new image.
 - Product images use `alt=""`, because the product name is right beside them. Decorative images with no text next to them get a descriptive `alt`.
 - Client TypeScript is strict (`noUnusedLocals`, `noUnusedParameters`, `erasableSyntaxOnly`, `verbatimModuleSyntax`). Write type-only imports as `import type`.
