@@ -14,7 +14,7 @@ export const Store: React.FC = () => {
     <section className="max-w-content mt-4">
       {categories.map((category) => (
         <div key={category} className="m-4 mb-12">
-          <h2 className="font-ui text-2xl lg:text-3xl text-stone-900 mb-4">
+          <h2 className="font-ui text-2xl lg:text-3xl text-stone-900 mb-4 px-4 md:px-0">
             {category}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
