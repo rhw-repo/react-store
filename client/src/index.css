@@ -1,13 +1,6 @@
 @import "tailwindcss";
 @source not "../../CLAUDE.md";
 
-/* ---------------------------------------------------------------------------
-   Fonts. Self-hosted woff2 from public/, referenced by absolute path.
-   Variable fonts declare ranges that match the file's real fvar axes.
-   --------------------------------------------------------------------------- */
-
-/* Static files, one per weight. Only 100, 400 and 700 exist, so any other
-   weight falls back to the nearest of these. */
 @font-face {
   font-family: "Lato";
   src: url("/Lato-Thin.woff2") format("woff2");
@@ -32,7 +25,6 @@
   font-display: swap;
 }
 
-/* Axes: wdth, wght 400-900. */
 @font-face {
   font-family: "Noto-Serif";
   src: url("/NotoSerif-VariableFont_wdth,wght.woff2") format("woff2");
@@ -41,14 +33,8 @@
   font-display: swap;
 }
 
-/* ---------------------------------------------------------------------------
-   Design tokens. Each --font-* and --color-* generates matching utilities,
-   e.g. font-ui, bg-shell, text-ink.
-   --------------------------------------------------------------------------- */
 @theme {
-  /* Body copy */
   --font-body: "Noto-Serif", ui-serif, system-ui, serif;
-  /* Headings (Bold) and paragraphs (Thin) */
   --font-ui: "Lato", ui-sans-serif, system-ui, sans-serif;
 
   --color-shell: oklch(97% 0.001 106.424);
@@ -59,13 +45,7 @@
 
   --shadow-bar:
     0 4px 6px -1px rgb(28 25 23 / 0.3), 0 2px 4px -2px rgb(28 25 23 / 0.3);
-  /* Negative y-offset: a bottom bar's shadow must cast upward onto the content
-     above it, or it falls off the page. No built-in utility does this. */
   --shadow-bar-inverted: 0 -6px 16px -4px rgb(28 25 23 / 0.4);
-  /* 0.3, not 0.4: the shell is stone-100, so a shadow drags it down further
-     than it did against the old saturated fill. The bar tokens stay at their
-     weights — the bars are stone-300 on a stone-100 page, and their shadow is
-     now the main thing separating them from the content. */
   --shadow-media:
     0 1px 3px 0 rgb(28 25 23 / 0.3), 0 1px 2px -1px rgb(28 25 23 / 0.3);
 
@@ -92,9 +72,6 @@
     background-color: var(--color-shell);
   }
 
-  /* Buttons get font-body from Button's tv() base instead, since they need it
-     alongside other variant classes. Components that set their own text-*
-     utility override the colour here, as Navbar's links do. */
   p {
     font-family: var(--font-ui);
     font-weight: 100;

@@ -18,7 +18,6 @@ export function useCheckout() {
       const { url } = (await res.json()) as { url: string };
       return url;
     },
-    // Leave the app for Stripe's hosted payment page
     onSuccess: (url) => {
       window.location.href = url;
     },

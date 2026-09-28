@@ -21,8 +21,6 @@ const buttonStyles = tv({
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-teal-800 rounded-sm transition-colors",
       decrement:
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-teal-800 rounded-sm transition-colors",
-      // Rose only here: on the minus it would signal a destruction that isn't
-      // happening. This variant only renders at a quantity of 1.
       remove:
         "flex justify-center items-center w-8 h-8 bg-transparent text-teal-700 hover:text-rose-600 active:text-rose-900 rounded-sm transition-colors",
       removeFromOpenedCart:

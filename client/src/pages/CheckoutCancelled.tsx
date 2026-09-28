@@ -3,7 +3,6 @@ import { useCancelledCheckout } from "../hooks/useCancelledCheckout";
 import PageTemplate from "../components/PageTemplate";
 import { NotFound } from "./NotFound";
 
-// Stripe redirects here when the shopper leaves the payment page without paying
 export const CheckoutCancelled = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");

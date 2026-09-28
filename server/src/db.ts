@@ -14,7 +14,6 @@ export type User = {
   id: string;
   email: string;
   name: string;
-  // Set on the user's first checkout
   stripeCustomerId?: string;
 };
 
@@ -31,8 +30,6 @@ const itemsCollection = db.collection<Item>("items");
 
 await itemsCollection.createIndex({ id: 1 }, { unique: true });
 
-// Seed from items.json only on first start; after that the database is the
-// source of truth
 const itemCount = await itemsCollection.countDocuments();
 if (itemCount === 0) {
   await itemsCollection.insertMany(items);

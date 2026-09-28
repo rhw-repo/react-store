@@ -18,9 +18,7 @@ export function useOrderConfirmation(sessionId: string | null) {
       }
       return res.json();
     },
-    // Only fetch when the URL has a session id
     enabled: sessionId != null,
-    // "Order not found" won't change by retrying
     retry: false,
   });
 }

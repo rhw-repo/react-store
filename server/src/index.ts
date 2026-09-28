@@ -42,8 +42,7 @@ app.get("/items", async (_req, res) => {
   res.json(await getItems());
 });
 
-// Create the checkout sesion for the whole cart. The client sends only ids and
-// quantities; prices always come from the database.
+// The client sends only ids and quantities; prices always come from the database.
 app.post(
   "/create-checkout-session",
   express.json(),
@@ -71,14 +70,12 @@ app.post(
       });
     }
 
-    // The demo user is always signed in until real login exists
     const user = await getUser("user_123");
     if (user == null) {
       res.status(500).json({ error: "User not found" });
       return;
     }
 
-    // Create the Stripe customer on the user's first checkout, then reuse it
     let customerId = user.stripeCustomerId;
     if (!customerId) {
       const customer = await stripe.customers.create({
@@ -110,8 +107,6 @@ app.post(
   },
 );
 
-// Order summary for the Thank-you page. Read-only: asks Stripe for the session
-// and returns a summary only if it has been paid.
 app.get(
   "/order-confirmation",
   validateQuery(successQuery),
@@ -135,7 +130,6 @@ app.get(
       limit: 100,
     });
 
-    // Stripe amounts are in cents; the client works in euros
     const items = [];
     for (const lineItem of lineItems.data) {
       items.push({
@@ -153,7 +147,6 @@ app.get(
   },
 );
 
-// Checks the Cancelled page was reached from a real, unpaid Stripe session
 app.get(
   "/checkout-cancelled",
   validateQuery(successQuery),
@@ -168,7 +161,6 @@ app.get(
       return;
     }
 
-    // Only an unpaid session is a cancelled checkout
     if (session.payment_status !== "unpaid") {
       res.sendStatus(404);
       return;

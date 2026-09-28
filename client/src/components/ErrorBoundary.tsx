@@ -1,4 +1,3 @@
-// 'Component' must be imported to write any class component
 import React, { Component, type ReactNode } from "react";
 import Button from "./Button";
 
@@ -10,7 +9,6 @@ interface Props {
 
 interface State {
   hasError: boolean;
-  // error assigned to the JavaScript Error Object
   error?: Error;
 }
 
@@ -21,23 +19,19 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render will show the fallback UI
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Dev phase only. Production: log the error to an error reporting service
     console.error("Error caught by ErrorBoundary:", error, errorInfo);
   }
 
-  // Allow reset
   componentDidUpdate(prevProps: Props) {
     if (this.props.resetKey !== prevProps.resetKey) {
       this.setState({ hasError: false, error: undefined });
     }
   }
 
-  // When error, display fallback UI with button to navigate to store page
   render() {
     if (this.state.hasError) {
       return (
