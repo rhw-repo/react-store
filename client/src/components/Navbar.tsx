@@ -31,7 +31,7 @@ export const Navbar = () => {
           to="/store"
           className="flex justify-center items-center text-base sm:text-lg lg:text-3xl font-bold rounded-sm py-2 px-2 text-teal-800 hover:text-teal-900 focus:ring-2 focus:ring-offset-2 focus:ring-teal-950 active:text-teal-950"
         >
-          Amber & Fern
+          Mallow & Fern
         </Link>
         <div className="flex justify-end">
           {cartQuantity > 0 && (
