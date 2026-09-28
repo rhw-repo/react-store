@@ -4,11 +4,12 @@ import { StoreItemCard } from "../components/StoreItemCard";
 const categories = ["Face", "Home Hygge", "Gift Sets", "Candles"];
 
 export const Store: React.FC = () => {
-  const { data: storeItems = [], error } = useStoreItems();
+  const { data: storeItems = [], error, isPending } = useStoreItems();
 
   // Rethrown during render so the ErrorBoundary catches it; a failed fetch
   // never reaches a boundary on its own.
   if (error) throw error;
+  if (isPending) return null;
 
   return (
     <section className="max-w-content mt-4">
