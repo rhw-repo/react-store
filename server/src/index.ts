@@ -170,11 +170,8 @@ app.get(
   },
 );
 
-/* STRIPE WEBHOOKS: future stretch feature, off until a security review.
-   Needs STRIPE_WEBHOOK_SECRET.
+/* STRIPE WEBHOOKS: future stretch feature for live store
 
-// Authenticate and authorise a valid purchase event
-// express.raw keeps the exact bytes Stripe sent: its signature check fails on a parsed body
 app.post(
   "/webhooks/stripe",
   express.raw({ type: "application/json" }),
@@ -213,7 +210,7 @@ app.post(
   },
 );
 
-// Send user to home page AFTER all server side logic completed
+// Send user to success page AFTER all server side logic completed
 // validateQuery checks sessionId is a string before the handler runs
 app.get(
   "/purchase/success",
@@ -230,7 +227,6 @@ app.get(
   },
 );
 
-// Resuable
 async function fulfillPayment(sessionId: string) {
   const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId, {
     expand: ["line_items"],
