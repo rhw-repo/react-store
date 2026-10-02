@@ -3,11 +3,9 @@
 ![Tailwind CSS](https://readmebadge.vercel.app/badges/tailwind.svg) ![React](https://readmebadge.vercel.app/badges/react.svg)
 ![Typescript](https://readmebadge.vercel.app/badges/typescript.svg)
 
-Iteration of e-commerce app to integrate with Stripe Payment.
+Latest iteration of e-commerce app to integrate with Stripe Payment.
 
-Currently in development.
-
-## Tech Stack
+## Technologies
 
 - React 19 + TypeScript
 - Tailwind CSS v4 with Tailwind Variants
@@ -17,6 +15,7 @@ Currently in development.
 - MongoDB
 - Zod
 - Helmet
+- CORS
 - Stripe Checkout
 
 ---
