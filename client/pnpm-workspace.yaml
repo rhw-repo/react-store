@@ -5,7 +5,8 @@ blockExoticSubdeps: true
 overrides:
   "semver": ">=7.7.3"
   "esbuild": ">=0.28.1"
-  "why-is-node-running": "3.2.1"
+  "seroval": ">=1.6.3"
+  "source-map-js": ">=1.2.2"
 
 allowBuilds:
   "@swc/core": true
